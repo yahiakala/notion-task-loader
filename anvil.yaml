@@ -108,8 +108,8 @@ dependencies:
 - dep_id: dep_s2fhmt4crkahq5
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}
   version: {version_tag: v1.1.3}
-- dep_id: dep_px5prjjz2psp8
-  resolution_hints: {app_id: MJET3XZFNUOZH7ON, name: Protobyte, package_name: Protobyte}
+- dep_id: dep_g0by81p383psl
+  resolution_hints: {app_id: PIJ33MOHKDZDE7NS, name: routing, package_name: routing}
   version: {branch: master}
 metadata: {logo_img: 'asset:BoltAI-2024-10-30_13-51-09_196PM.png', title: Notion Task Loader}
 name: Notion Task Loader
