@@ -42,22 +42,6 @@ db_schema:
       type: simpleObject
     server: full
     title: Tenants
-  usermap:
-    client: none
-    columns:
-    - admin_ui: {width: 200}
-      name: user
-      target: users
-      type: link_single
-    - admin_ui: {width: 200}
-      name: roles
-      target: roles
-      type: link_multiple
-    - admin_ui: {width: 200}
-      name: customer_id
-      type: string
-    server: full
-    title: Usermap
   users:
     client: none
     columns:

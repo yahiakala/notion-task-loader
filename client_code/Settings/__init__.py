@@ -12,9 +12,9 @@ class Settings(SettingsTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
         self.rp_mfa.add_event_handler('x-remove-mfa-id', self.remove_mfa_id)
-        self.link_portal.url = Global.customer_portal
-        if self.link_portal.url:
-            self.link_portal.visible = True
+        # self.link_portal.url = Global.customer_portal
+        # if self.link_portal.url:
+        #     self.link_portal.visible = True
         self.user = Global.user
         if self.user['password_hash']:
             self.cp_password.visible = True

@@ -46,11 +46,6 @@ components:
     name: link_settings
     properties: {text: Settings}
     type: Link
-  - event_bindings: {click: nav_click}
-    layout_properties: {grid_position: 'VVEAHG,FBWQAS'}
-    name: link_forum
-    properties: {text: Forum}
-    type: Link
   layout_properties: {slot: left-nav}
   name: cp_sidebar
   properties: {}

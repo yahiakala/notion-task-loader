@@ -9,7 +9,6 @@ from anvil_extras import routing
 from ..Home import Home
 from ..Settings import Settings
 from ..Tests import Tests
-from ..Forum import Forum
 
 
 @routing.template(path='app', priority=1, condition=None)
@@ -22,7 +21,6 @@ class Router(RouterTemplate):
         self.link_dev.tag.url_hash = 'app/tests'
         self.link_logout.tag.url_hash = 'app/logout'
         self.link_settings.tag.url_hash = 'app/settings'
-        self.link_forum.tag.url_hash = 'app/forum'
         
         user = Global.user
         self.set_account_state(user)

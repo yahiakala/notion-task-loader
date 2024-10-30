@@ -94,11 +94,11 @@ def update_user_permissions(user_dict):
     if not user:
         user = app_tables.users.get(email=user_dict['user_email'])
     role = app_tables.roles.get(name=user_dict['variant_name'])
-    maprow = app_tables.usermap.get(user=user)
+    maprow = app_tables.usertenant.get(user=user)
 
     if user:
         if not maprow:
-            maprow = app_tables.usermap.add_row(user=user)
+            maprow = app_tables.usertenant.add_row(user=user)
         maprow['customer_id'] = str(user_dict['customer_id'])
         if not role:
             role = app_tables.roles.add_row(name=user_dict['variant_name'])
@@ -118,13 +118,13 @@ def get_customer_portal():
     """Get the URL for the customer portal."""
     from anvil_squared.lemons import get_customer
     user = anvil.users.get_user(allow_remembered=True)
-    usermap = app_tables.usermap.get(user=user)
-    if not usermap:
+    usertenant = app_tables.usertenant.get(user=user)
+    if not usertenant:
         return ''
-    elif not usermap['customer_id']:
+    elif not usertenant['customer_id']:
         return ''
     cust_portal, _ = get_customer(
         api_key=anvil.secrets.get_secret(lemon_api),
-        customer_id=usermap['customer_id']
+        customer_id=usertenant['customer_id']
     )
     return cust_portal
