@@ -1,0 +1,31 @@
+components:
+- components:
+  - components:
+    - components:
+      - layout_properties: {width: 20}
+        name: img_google
+        properties: {display_mode: shrink_to_fit, height: '20', source: _/theme/search.png}
+        type: Image
+      - name: lbl_google
+        properties: {text: Sign in with Google}
+        type: Label
+      data_bindings: []
+      layout_properties: {}
+      name: fp_google_login
+      properties:
+        align: center
+        border: ''
+        role: [soft-button, soft-fp]
+        vertical_align: middle
+      type: FlowPanel
+    layout_properties: {grid_position: 'NVHRBA,OGYSEV'}
+    name: fp_outer
+    properties: {align: center, visible: false}
+    type: FlowPanel
+  event_bindings: {click: btn_google_click}
+  layout_properties: {grid_position: 'XXKHLM,IDYZUY'}
+  name: link_google
+  properties: {align: center, border: '', role: null, text: '', wrap_on: never}
+  type: Link
+container: {type: ColumnPanel}
+is_package: true

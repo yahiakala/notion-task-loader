@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'JKMQPH,DUSUXI'}
+  name: lbl_title
+  properties: {text: Home Detail}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true

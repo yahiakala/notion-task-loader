@@ -1,0 +1,61 @@
+components:
+- components: []
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
+- components:
+  - components:
+    - event_bindings: {click: nav_click}
+      layout_properties: {}
+      name: link_dev
+      properties: {text: Dev}
+      type: Link
+    - event_bindings: {click: link_help_click}
+      layout_properties: {}
+      name: link_help
+      properties: {icon: 'fa:question-circle', text: ''}
+      type: Link
+    - event_bindings: {click: icon_logout_click}
+      name: icon_logout
+      properties: {icon: 'fa:sign-out'}
+      type: Link
+    layout_properties: {}
+    name: fp_navbar
+    properties: {align: right, vertical_align: middle}
+    type: FlowPanel
+  layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+- components:
+  - event_bindings: {click: nav_click}
+    layout_properties: {grid_position: 'CHAVES,CHUIDO'}
+    name: link_home
+    properties: {text: Home}
+    type: Link
+  - components: []
+    event_bindings: {click: icon_logout_click}
+    layout_properties: {grid_position: 'GHZOLU,BVEMER'}
+    name: link_logout
+    properties: {text: Logout}
+    type: Link
+  - components: []
+    event_bindings: {click: nav_click}
+    layout_properties: {grid_position: 'FPKVPS,GRULCP'}
+    name: link_settings
+    properties: {text: Settings}
+    type: Link
+  - event_bindings: {click: nav_click}
+    layout_properties: {grid_position: 'VVEAHG,FBWQAS'}
+    name: link_forum
+    properties: {text: Forum}
+    type: Link
+  layout_properties: {slot: left-nav}
+  name: cp_sidebar
+  properties: {}
+  type: ColumnPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true
