@@ -1,17 +1,17 @@
 from ._anvil_designer import SignupTemplate
 from anvil import *
 import anvil.users
-from anvil_extras import routing
 from anvil_squared import utils
+from routing import router
 
-from ..Global import Global
+from ...Global import Global
 
 
-@routing.route('signup', template='Static', url_keys=[routing.ANY])
 class Signup(SignupTemplate):
-    def __init__(self, **properties):
+    def __init__(self, routing_context: router.RoutingContext, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.url_dict = routing_context.query
         self.user = Global.user
         is_mobile = anvil.js.window.navigator.userAgent.lower().find("mobi") > -1
         if is_mobile:
@@ -25,7 +25,8 @@ class Signup(SignupTemplate):
             anvil.js.window.location.href = self.url_dict['redirect']
         elif self.user:
             Global.user = self.user
-            routing.set_url_hash('app')
+            router.navigate(path='/app')
+        pass
 
     def btn_google_click(self, **event_args):
         """Signup with Google"""
@@ -38,7 +39,7 @@ class Signup(SignupTemplate):
         except anvil.users.UserExists as e:
             anvil.alert(str(e.args[0]))
             self.user = None
-            routing.set_url_hash(url_pattern='signin', url_dict=self.url_dict)
+            router.navigate(path='/signin', query=self.url_dict)
 
     def btn_signup_click(self, **event_args):
         """Signup with email/password"""
@@ -64,4 +65,4 @@ class Signup(SignupTemplate):
 
     def link_signin_click(self, **event_args):
         """This method is called when the link is clicked"""
-        routing.set_url_hash(url_pattern='signin', url_dict=self.url_dict)
+        router.navigate(path='/signin', query=self.url_dict)

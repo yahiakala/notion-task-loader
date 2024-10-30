@@ -41,7 +41,7 @@ components:
     type: Label
   - layout_properties: {grid_position: 'SSJSZY,HKGEQU'}
     name: rp_mfa
-    properties: {item_template: Settings.MFAItem}
+    properties: {item_template: Pages.Settings.MFAItem}
     type: RepeatingPanel
   - event_bindings: {click: btn_add_mfa_click}
     layout_properties: {grid_position: 'OXZBJX,GOBNOE'}

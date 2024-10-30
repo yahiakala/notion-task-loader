@@ -8,5 +8,8 @@ _global_dict = {
     'usertenant': None,
     'permissions': None
 }
+_tenanted_dict = {
+    'info': None
+}
 
-Global = GlobalCache(_global_dict)
+Global = GlobalCache(_global_dict, _tenanted_dict)

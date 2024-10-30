@@ -1,8 +1,8 @@
 
 import anvil.server
-from .Router import Router
-from .BlankTemplate import BlankTemplate
-from .Static import Static
+# from Templates.Router import Router
+# from .BlankTemplate import BlankTemplate
+# from .Static import Static
 from .Global import Global
 
 from routing.router import launch

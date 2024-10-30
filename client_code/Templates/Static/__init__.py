@@ -1,9 +1,9 @@
 from ._anvil_designer import StaticTemplate
 from anvil import *
 
-from ...Signin import Signin
-from ...Signup import Signup
-from ...Sign import Sign
+# from ...Signin import Signin
+# from ...Signup import Signup
+# from ...Sign import Sign
 
 
 class Static(StaticTemplate):

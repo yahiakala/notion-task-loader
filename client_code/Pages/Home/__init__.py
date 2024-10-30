@@ -1,7 +1,6 @@
 from ._anvil_designer import HomeTemplate
 from anvil import *
 import anvil.server
-from anvil_extras import routing
 
 default_prompt = """
 Give me a list of recommended fixes and feature requests, remove the user and times.
@@ -176,8 +175,7 @@ As an AI meeting assistant, your primary task is to analyze meeting transcripts 
 Remember to maintain a professional and helpful tone throughout the interaction, and always be ready to adapt to the user's specific needs or requests.
 """
 
-@routing.route('', template='Router')
-@routing.route('/home', template='Router')
+
 class Home(HomeTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.

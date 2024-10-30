@@ -2,20 +2,19 @@ from ._anvil_designer import SignTemplate
 from anvil import *
 import anvil.users
 import time
-# from anvil_extras import routing
+from routing import router
 
-from ..Global import Global
+from ...Global import Global
 
 
-# @routing.route('', template='Static')
-# @routing.route('sign', template='Static', url_keys=[routing.ANY])
 class Sign(SignTemplate):
-    def __init__(self, **properties):
+    def __init__(self, routing_context: router.RoutingContext, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.url_dict = routing_context.query
         self.user = Global.user
-        # if self.user:
-            # routing.set_url_hash('app')
+        if self.user:
+            router.navigate(path='/app')
 
         is_mobile = anvil.js.window.navigator.userAgent.lower().find("mobi") > -1
         if is_mobile:
@@ -24,11 +23,11 @@ class Sign(SignTemplate):
 
     def btn_signin_click(self, **event_args):
         """This method is called when the button is clicked"""
-        routing.set_url_hash(url_pattern='signin', url_dict=self.url_dict)
+        router.navigate(path='/signin', query=self.url_dict)
 
     def btn_signup_click(self, **event_args):
         """This method is called when the button is clicked"""
-        routing.set_url_hash(url_pattern='signup', url_dict=self.url_dict)
+        router.navigate(path='/signup', query=self.url_dict)
 
     def form_show(self, **event_args):
         """Skip expansion animation with cp inside of fp."""

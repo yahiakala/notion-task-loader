@@ -1,8 +1,0 @@
-components_by_slot:
-  content:
-  - layout_properties: {}
-    name: text_1
-    properties: {text: Contact}
-    type: form:dep_s2fhmt4crkahq5:_Components.Text
-is_package: true
-layout: {type: 'form:Layouts.Main'}
