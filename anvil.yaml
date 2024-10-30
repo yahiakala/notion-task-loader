@@ -121,7 +121,8 @@ dependencies:
 - dep_id: dep_i3kq70u5al9g
   resolution_hints: {app_id: KDKDM3MG6IQHC2FK, name: Anvil Squared, package_name: anvil_squared}
   version: {dev: true}
-name: Clone of SaaS Boilerplate
+metadata: {logo_img: 'asset:BoltAI-2024-10-30_13-51-09_196PM.png', title: Notion Task Loader}
+name: Notion Task Loader
 native_deps:
   head_html: |-
     <meta name="theme-color" content="#FFFBFE">
