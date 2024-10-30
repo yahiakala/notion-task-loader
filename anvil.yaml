@@ -121,6 +121,9 @@ dependencies:
 - dep_id: dep_i3kq70u5al9g
   resolution_hints: {app_id: KDKDM3MG6IQHC2FK, name: Anvil Squared, package_name: anvil_squared}
   version: {dev: true}
+- dep_id: dep_s2fhmt4crkahq5
+  resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}
+  version: {version_tag: v1.1.3}
 metadata: {logo_img: 'asset:BoltAI-2024-10-30_13-51-09_196PM.png', title: Notion Task Loader}
 name: Notion Task Loader
 native_deps:
