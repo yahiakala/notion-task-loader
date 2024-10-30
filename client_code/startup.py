@@ -1,4 +1,3 @@
-from anvil_extras import routing
 
 import anvil.server
 from .Router import Router
@@ -6,30 +5,37 @@ from .BlankTemplate import BlankTemplate
 from .Static import Static
 from .Global import Global
 
-@routing.redirect(path="app", priority=20, condition=lambda: Global.user is None)
-def redirect_no_user():
-    return "sign"
+from routing.router import launch
+from . import routes
 
 
-@routing.redirect(path="app", priority=18, condition=lambda: Global.get_s('tenant') is None and Global.user is not None)
-def redirect_no_tenant():
-    print('redirect_no_tenant')
-    Global.tenant = anvil.server.call('get_tenant_single')
-    if Global.get_s('tenant') is None:
-        Global.tenant = anvil.server.call('create_tenant_single')
+if __name__ == "__main__":
+    launch()
 
-    try:
-        Global.tenant_id = Global.tenant.get_id()
-    except Exception:
-        Global.tenant_id = Global.tenant['id']
+# @routing.redirect(path="app", priority=20, condition=lambda: Global.user is None)
+# def redirect_no_user():
+#     return "sign"
 
-    if 'delete_members' in Global.permissions and (Global.tenant['name'] is None or Global.tenant['name'] == ''):
-        return 'app/admin'
 
-    return routing.get_url_hash()
+# @routing.redirect(path="app", priority=18, condition=lambda: Global.get_s('tenant') is None and Global.user is not None)
+# def redirect_no_tenant():
+#     print('redirect_no_tenant')
+#     Global.tenant = anvil.server.call('get_tenant_single')
+#     if Global.get_s('tenant') is None:
+#         Global.tenant = anvil.server.call('create_tenant_single')
 
-hash, pattern, dict = routing.get_url_components()
+#     try:
+#         Global.tenant_id = Global.tenant.get_id()
+#     except Exception:
+#         Global.tenant_id = Global.tenant['id']
 
-routing.set_url_hash(hash)
+#     if 'delete_members' in Global.permissions and (Global.tenant['name'] is None or Global.tenant['name'] == ''):
+#         return 'app/admin'
 
-routing.launch()
+#     return routing.get_url_hash()
+
+# hash, pattern, dict = routing.get_url_components()
+
+# routing.set_url_hash(hash)
+
+# routing.launch()

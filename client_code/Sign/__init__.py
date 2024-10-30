@@ -2,20 +2,20 @@ from ._anvil_designer import SignTemplate
 from anvil import *
 import anvil.users
 import time
-from anvil_extras import routing
+# from anvil_extras import routing
 
 from ..Global import Global
 
 
-@routing.route('', template='Static')
-@routing.route('sign', template='Static', url_keys=[routing.ANY])
+# @routing.route('', template='Static')
+# @routing.route('sign', template='Static', url_keys=[routing.ANY])
 class Sign(SignTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
         self.user = Global.user
-        if self.user:
-            routing.set_url_hash('app')
+        # if self.user:
+            # routing.set_url_hash('app')
 
         is_mobile = anvil.js.window.navigator.userAgent.lower().find("mobi") > -1
         if is_mobile:
