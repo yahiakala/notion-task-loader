@@ -2,16 +2,16 @@ components:
 - components:
   - data_bindings:
     - {code: 'self.item[''title'']', property: text, writeback: false}
-    layout_properties: {grid_position: 'HLJTRK,YCFNPA'}
-    name: lbl_task_title
-    properties: {}
-    type: form:dep_s2fhmt4crkahq5:_Components.Heading
+    layout_properties: {grid_position: 'NQMVIL,TOHNPI'}
+    name: lbl_title
+    properties: {role: headline}
+    type: Label
   - data_bindings:
     - {code: 'self.item[''description'']', property: text, writeback: false}
-    layout_properties: {grid_position: 'GDGLWF,MLAESF'}
-    name: lbl_task_description
+    layout_properties: {grid_position: 'TXMJDR,LTVEPH'}
+    name: lbl_desc
     properties: {}
-    type: form:dep_s2fhmt4crkahq5:_Components.Text
+    type: Label
   layout_properties: {grid_position: 'KTYKLV,FKYBLD'}
   name: column_panel_1
   properties: {role: outlined-card}

@@ -8,20 +8,19 @@ components:
   name: timer_prompt
   properties: {interval: 0}
   type: Timer
-- data_bindings: []
-  layout_properties: {grid_position: 'YYCZKN,SFYQVM'}
+- layout_properties: {grid_position: 'ADFZQO,PQIHFW'}
   name: ta_transcript
-  properties: {appearance: outlined}
-  type: form:dep_s2fhmt4crkahq5:_Components.TextInput.TextArea
-- layout_properties: {grid_position: 'GKQXGW,FADMWH'}
+  properties: {height: '100', role: outlined}
+  type: TextArea
+- layout_properties: {grid_position: 'JRLBHO,XCNYPZ'}
   name: rp_tasks
-  properties: {item_template: Pages.Home.Tasks, visible: false}
+  properties: {item_template: Pages.Home.Tasks}
   type: RepeatingPanel
 - event_bindings: {click: btn_submit_click}
-  layout_properties: {grid_position: 'GXMUYM,FZFKEA'}
+  layout_properties: {grid_position: 'LFMKSV,VEFRUA'}
   name: btn_submit
-  properties: {align: center, appearance: filled, icon: 'mi:send', tooltip: Submit}
-  type: form:dep_s2fhmt4crkahq5:_Components.IconButton
+  properties: {role: filled-button, text: Process}
+  type: Button
 - layout_properties: {grid_position: 'ZOGJTN,KJNOZA'}
   name: img_loading
   properties: {height: 77.3984375, source: _/theme/loading8.gif, visible: false}
