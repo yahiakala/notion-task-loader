@@ -37,13 +37,7 @@ def extract_action_items(transcript):
     
     Returns a list of dicts with title and description.
     """
-    # Get API key from Anvil secrets
     api_key = anvil.secrets.get_secret('OPENAI_API_KEY')
-    if not api_key:
-        raise ValueError(
-            "OpenAI API key not found in Anvil secrets. Please set OPENAI_API_KEY "
-            "secret."
-        )
     
     client = OpenAI(api_key=api_key)
 
