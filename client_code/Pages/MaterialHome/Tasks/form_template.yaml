@@ -1,0 +1,32 @@
+is_package: true
+container:
+  type: ColumnPanel
+  properties:
+    col_spacing: medium
+    row_spacing: small
+    spacing_above: none
+    spacing_below: none
+components:
+- type: Card
+  name: card_task
+  properties:
+    role: outlined
+  components:
+  - type: Label
+    name: lbl_title
+    properties:
+      text: ''
+      role: title-large
+      foreground: theme:On Surface
+    data_bindings:
+    - property: text
+      code: self.item['title']
+  - type: Label
+    name: lbl_description
+    properties:
+      text: ''
+      role: body-medium
+      foreground: theme:On Surface Variant
+    data_bindings:
+    - property: text
+      code: self.item['description']

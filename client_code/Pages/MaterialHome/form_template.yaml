@@ -1,0 +1,61 @@
+container:
+  type: ColumnPanel
+  properties: {col_spacing: medium, row_spacing: large, spacing_above: large, spacing_below: large, background: theme:Primary Container}
+components:
+- type: ColumnPanel
+  properties: {role: card, background: theme:Surface}
+  name: card_main
+  layout_properties: {grid_position: 'JKMQPH,DUSUXI', expand: true}
+  components:
+  - type: Label
+    name: lbl_title
+    properties: {text: Task Processor, role: headline, align: center, font_size: 24, foreground: theme:On Surface}
+    layout_properties: {grid_position: 'HEADER,TITLE'}
+  - type: Spacer
+    properties: {height: 32}
+  - type: TextArea
+    name: ta_transcript
+    properties: 
+      role: outlined
+      placeholder: Enter your transcript here...
+      font_size: 16
+      height: 150
+      background: theme:Surface Variant
+      foreground: theme:On Surface Variant
+    layout_properties: {grid_position: 'CONTENT,TEXTAREA'}
+  - type: FlowPanel
+    properties: {align: center, spacing: medium}
+    name: flow_panel_1
+    layout_properties: {grid_position: 'ACTIONS,BUTTONS'}
+    components:
+    - type: Button
+      name: btn_submit
+      properties: 
+        text: Process Transcript
+        role: filled-button
+        icon: fa:paper-plane
+        font_size: 16
+        background: theme:Primary
+        foreground: theme:On Primary
+      event_bindings: {click: btn_submit_click}
+    - type: Image
+      name: img_loading
+      properties: {source: _/theme/loading8.gif, height: 40, visible: false}
+  - type: Spacer
+    properties: {height: 24}
+  - type: ColumnPanel
+    name: panel_tasks
+    properties: {role: tonal-card, background: theme:Secondary Container}
+    layout_properties: {grid_position: 'TASKS,LIST'}
+    components:
+    - type: Label
+      name: lbl_tasks
+      properties: {text: Tasks, role: title, align: center, foreground: theme:On Secondary Container}
+    - type: RepeatingPanel
+      name: rp_tasks
+      properties: {item_template: Pages.Home.Tasks, visible: true}
+- type: Timer
+  properties: {interval: 0}
+  name: timer_prompt
+  event_bindings: {tick: timer_prompt_tick}
+is_package: true
