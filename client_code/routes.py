@@ -56,6 +56,13 @@ class SettingsRoute(EnsureUserMixin, BaseRoute):
     cache_form = True
 
 
+class AdminRoute(EnsureUserMixin, BaseRoute):
+    template = 'Templates.Router'
+    path = '/app/admin'
+    form = 'Pages.Admin'
+    cache_form = True
+
+
 class TestsRoute(EnsureUserMixin, BaseRoute):
     template = 'Templates.Router'
     path = '/app/tests'

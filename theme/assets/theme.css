@@ -1206,9 +1206,9 @@ body {
   line-height: 1.334;
 }
 
-textarea.anvil-component.anvil-role-task-input {
+textarea.anvil-component.anvil-role-task-input, input.anvil-component.anvil-role-task-input {
   width: 100%;
-  min-height: 100px;
+  /* min-height: 100px; */
   padding: 12px;
   background-color: #F8F9FA;
   border: 1px solid #E5E7EB;
@@ -1220,13 +1220,13 @@ textarea.anvil-component.anvil-role-task-input {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-textarea.anvil-component.anvil-role-task-input:focus {
+textarea.anvil-component.anvil-role-task-input:focus, input.anvil-component.anvil-role-task-input:focus {
   outline: none;
   border-color: #374151;
   background-color: #FFFFFF;
 }
 
-textarea.anvil-component.anvil-role-task-input::placeholder {
+textarea.anvil-component.anvil-role-task-input::placeholder, input.anvil-component.anvil-role-task-input::placeholder {
   color: #6B7280;
 }
 

@@ -12,4 +12,4 @@ from . import routes
 if __name__ == "__main__":
     launch()
 
-# TODO: create tenant, add notion params, add form behavior of buttons and disappearing cards, test API call.
+# TODO: add notion params, add form behavior of buttons and disappearing cards, test API call.

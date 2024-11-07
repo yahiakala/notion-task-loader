@@ -337,3 +337,9 @@ roles:
 - {name: narrow-col}
 - {name: vertically-centered}
 - {name: skeleton}
+- {name: task-parser-title}
+- {name: task-input}
+- {name: input-container}
+- {name: process-button}
+- {name: task-title}
+- {name: task-description}
