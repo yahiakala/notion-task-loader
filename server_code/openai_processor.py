@@ -51,13 +51,9 @@ def process_transcript_background(transcript):
     )
 
     message = completion.choices[0].message
-    # print(message)
-    print(message.parsed.tasks)
-    return ''
-    # if message.parsed:
-    #     return message.parsed.tasks
-    # else:
-    #     return message.refusal
+    # Convert TaskResponse to list of dictionaries
+    tasks_list = [task.dict() for task in message.parsed.tasks]
+    return tasks_list
 
 
 @anvil.server.callable
