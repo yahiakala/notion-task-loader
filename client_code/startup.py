@@ -12,6 +12,8 @@ from . import routes
 if __name__ == "__main__":
     launch()
 
+# TODO: create tenant, add notion params, add form behavior of buttons and disappearing cards, test API call.
+
 # @routing.redirect(path="app", priority=20, condition=lambda: Global.user is None)
 # def redirect_no_user():
 #     return "sign"
