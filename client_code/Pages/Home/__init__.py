@@ -183,9 +183,61 @@ class Home(HomeTemplate):
         # anvil.server.call('do_admin')
         # Any code you write here will run before the form opens.
         self.ta_prompt.text = default_prompt
+        self.action_items = []
 
     def btn_edit_prompt_click(self, **event_args):
         """This method is called when the component is clicked."""
         self.ta_prompt.visible = True
 
-
+    def btn_submit_click(self, **event_args):
+        """Handle transcript submission and process action items"""
+        transcript = self.ta_transcript.text
+        if not transcript:
+            alert("Please enter a transcript first.")
+            return
+            
+        # Show loading state
+        self.btn_submit.icon = "fa:spinner"
+        self.btn_submit.enabled = False
+        
+        try:
+            # Call server function to process transcript
+            self.action_items = anvil.server.call('process_transcript', transcript)
+            
+            # Display results
+            self.display_action_items()
+            
+        except Exception as e:
+            alert(f"Error processing transcript: {str(e)}")
+            
+        finally:
+            # Reset button state
+            self.btn_submit.icon = "mi:send"
+            self.btn_submit.enabled = True
+            
+    def display_action_items(self):
+        """Display the action items in a formatted way"""
+        if not self.action_items:
+            alert("No action items were found in the transcript.")
+            return
+            
+        # Create a formatted display of action items
+        display_text = "Action Items:\n\n"
+        
+        for item in self.action_items:
+            display_text += f"Title: {item['title']}\n"
+            display_text += f"Description: {item['description']}\n"
+            display_text += "-" * 50 + "\n\n"
+            
+        # Create or update results text area
+        if not hasattr(self, 'ta_results'):
+            self.ta_results = TextArea(
+                visible=True,
+                enabled=True,
+                spacing_above="small",
+                spacing_below="small",
+                height=300
+            )
+            self.add_component(self.ta_results)
+            
+        self.ta_results.text = display_text
