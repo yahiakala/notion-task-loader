@@ -1,12 +1,4 @@
-
-import anvil.server
-# from Templates.Router import Router
-# from .BlankTemplate import BlankTemplate
-# from .Static import Static
-from .Global import Global
-
 from routing.router import launch
-from . import routes
 
 
 if __name__ == "__main__":
