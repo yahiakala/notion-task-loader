@@ -51,10 +51,13 @@ def process_transcript_background(transcript):
     )
 
     message = completion.choices[0].message
-    if message.parsed:
-        return message.parsed.tasks
-    else:
-        return message.refusal
+    # print(message)
+    print(message.parsed.tasks)
+    return ''
+    # if message.parsed:
+    #     return message.parsed.tasks
+    # else:
+    #     return message.refusal
 
 
 @anvil.server.callable
