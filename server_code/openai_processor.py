@@ -1,6 +1,9 @@
 import anvil.server
 from openai import OpenAI
 import anvil.secrets
+import anvil.tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 
 
 system_prompt = """
@@ -32,11 +35,10 @@ Example format:
 """
 
 
-def extract_action_items(transcript):
-    """Process transcript with OpenAI API.
-    
-    Returns a list of dicts with title and description.
-    """
+@anvil.server.background_task
+def process_transcript_background(transcript):
+    """Background task to process transcript with OpenAI API."""
+    # Get API key from Anvil secrets
     api_key = anvil.secrets.get_secret('OPENAI_API_KEY')
     
     client = OpenAI(api_key=api_key)
@@ -71,6 +73,8 @@ def extract_action_items(transcript):
 
 
 @anvil.server.callable
-def process_transcript(transcript):
-    """Server function to process transcript and return action items."""
-    return extract_action_items(transcript)
+def start_processing(transcript):
+    """Start background processing and return task ID."""
+    # Start background task
+    task = anvil.server.launch_background_task('process_transcript_background', transcript)
+    return task
