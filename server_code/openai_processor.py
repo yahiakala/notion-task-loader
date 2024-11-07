@@ -3,7 +3,6 @@ from openai import OpenAI
 import anvil.secrets
 import anvil.tables
 import anvil.tables.query as q
-from anvil.tables import app_tables
 from pydantic import BaseModel
 
 
