@@ -53,8 +53,7 @@ def extract_action_items(transcript):
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        temperature=0.7,
-        max_tokens=2000
+        temperature=0.7
     )
     
     # The response will be a string representation of a Python list of dicts
