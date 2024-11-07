@@ -56,7 +56,30 @@ def process_transcript_background(transcript):
             {"role": "user", "content": user_prompt}
         ],
         temperature=0.7,
-        max_tokens=4000  # Allowing for lengthy responses
+        max_tokens=4000,
+        response_format={
+            "type": "json_schema",
+            "json_schema": {
+                "type": "array",
+                "name": "task_list",
+                "strict": True,
+                "items": {
+                    "type": "object",
+                    "required": [
+                        "title",
+                        "description"
+                    ],
+                    "properties": {
+                        "title": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
     )
     
 
