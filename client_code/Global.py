@@ -6,7 +6,9 @@ _global_dict = {
     'is_mobile': None,
     'customer_portal': None,
     'usertenant': None,
-    'permissions': None
+    'permissions': None,
+    'tenant': None,
+    'tenant_id': None
 }
 _tenanted_dict = {
     'info': None
