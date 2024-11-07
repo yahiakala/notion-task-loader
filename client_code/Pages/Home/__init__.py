@@ -274,3 +274,7 @@ class Home(HomeTemplate):
             self.add_component(self.ta_results)
             
         self.ta_results.text = display_text
+
+    def timer_prompt_tick(self, **event_args):
+        """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
+        pass

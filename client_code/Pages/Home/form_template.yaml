@@ -3,6 +3,11 @@ components:
   name: lbl_title
   properties: {text: Home Detail}
   type: Label
+- event_bindings: {tick: timer_prompt_tick}
+  layout_properties: {grid_position: 'ATYNVM,TIWRTI'}
+  name: timer_prompt
+  properties: {}
+  type: Timer
 - layout_properties: {grid_position: 'ATYNVM,LJXZJX'}
   name: ta_transcript
   properties: {appearance: outlined}
