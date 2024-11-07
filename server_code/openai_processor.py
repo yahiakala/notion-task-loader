@@ -1,5 +1,6 @@
 import anvil.server
 from openai import OpenAI
+import anvil.secrets
 
 
 system_prompt = """
@@ -36,9 +37,15 @@ def extract_action_items(transcript):
     
     Returns a list of dicts with title and description.
     """
-    client = OpenAI()
+    # Get API key from Anvil secrets
+    api_key = anvil.secrets.get_secret('OPENAI_API_KEY')
+    if not api_key:
+        raise ValueError(
+            "OpenAI API key not found in Anvil secrets. Please set OPENAI_API_KEY "
+            "secret."
+        )
     
-    
+    client = OpenAI(api_key=api_key)
 
     user_prompt = (
         "Please analyze this transcript and extract all action items:\n\n"
@@ -48,12 +55,13 @@ def extract_action_items(transcript):
     )
 
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4-turbo-preview",  # Using the model with 128k context window
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        temperature=0.7
+        temperature=0.7,
+        max_tokens=4000  # Allowing for lengthy responses
     )
     
     # The response will be a string representation of a Python list of dicts
