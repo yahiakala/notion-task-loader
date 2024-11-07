@@ -1,26 +1,39 @@
 components:
-- layout_properties: {grid_position: 'JKMQPH,DUSUXI'}
+- data_bindings:
+  - {code: '''task-parser-title''', property: role, writeback: false}
+  layout_properties: {grid_position: 'JKMQPH,DUSUXI'}
   name: lbl_title
-  properties: {text: Home Detail}
+  properties: {role: headline, text: Task Parser}
   type: Label
 - event_bindings: {tick: timer_prompt_tick}
   layout_properties: {grid_position: 'ATYNVM,TIWRTI'}
   name: timer_prompt
   properties: {interval: 0}
   type: Timer
-- layout_properties: {grid_position: 'ADFZQO,PQIHFW'}
-  name: ta_transcript
-  properties: {height: '100', role: outlined}
-  type: TextArea
+- components:
+  - data_bindings:
+    - {code: '''task-input''', property: role, writeback: false}
+    layout_properties: {grid_position: 'ENUHRX,DZUEDF'}
+    name: ta_transcript
+    properties: {height: '100', placeholder: Enter your transcript here..., role: outlined}
+    type: TextArea
+  - data_bindings:
+    - {code: '''process-button''', property: role, writeback: false}
+    event_bindings: {click: btn_submit_click}
+    layout_properties: {grid_position: 'XAFMUD,EAYNBT'}
+    name: btn_submit
+    properties: {icon: 'fa:check', role: filled-button, text: Process}
+    type: Button
+  data_bindings:
+  - {code: '''input-container''', property: role, writeback: false}
+  layout_properties: {grid_position: 'AYDZYV,OABCBR'}
+  name: cp_input
+  properties: {}
+  type: ColumnPanel
 - layout_properties: {grid_position: 'JRLBHO,XCNYPZ'}
   name: rp_tasks
   properties: {item_template: Pages.Home.Tasks}
   type: RepeatingPanel
-- event_bindings: {click: btn_submit_click}
-  layout_properties: {grid_position: 'LFMKSV,VEFRUA'}
-  name: btn_submit
-  properties: {role: filled-button, text: Process}
-  type: Button
 - layout_properties: {grid_position: 'ZOGJTN,KJNOZA'}
   name: img_loading
   properties: {height: 77.3984375, source: _/theme/loading8.gif, visible: false}
