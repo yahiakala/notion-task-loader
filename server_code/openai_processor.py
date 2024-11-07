@@ -1,8 +1,6 @@
 import anvil.server
 from openai import OpenAI
 import anvil.secrets
-import anvil.tables
-import anvil.tables.query as q
 from pydantic import BaseModel
 
 
@@ -37,15 +35,15 @@ def process_transcript_background(transcript):
         "Extract action items with titles and descriptions."
     )
 
-    completion = client.beta.chat.completions.parse(
-        model="gpt-4-turbo-preview",  # Using the model with 128k context window
+    completion = client.chat.completions.create(
+        model="gpt-4o-2024-08-06",  # Using model with 128k context window
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
         temperature=0.7,
         max_tokens=4000,
-        response_format=list[ActionItem]
+        response_format=ActionItem
     )
 
     return completion.choices[0].message.parsed
