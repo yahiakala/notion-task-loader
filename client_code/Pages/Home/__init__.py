@@ -37,6 +37,7 @@ class Home(HomeTemplate):
                 self.timer_prompt.interval = 0
                 self.action_items = self.current_task.get_return_value()
                 self.rp_tasks.items = self.action_items
+                self.rp_tasks.visible = True
                 # alert(self.action_items)
                 self.btn_submit.enabled = True
                 self.img_loading.visible = False
