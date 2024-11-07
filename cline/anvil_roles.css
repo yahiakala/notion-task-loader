@@ -1,0 +1,156 @@
+/* Title Role */
+.anvil-role-task-parser-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1F2937;
+  margin: 0 0 20px 0;
+  padding: 0;
+  letter-spacing: 0.15px;
+  line-height: 1.334;
+}
+
+/* Textarea Role */
+.anvil-role-task-input {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #1F2937;
+  box-sizing: border-box;
+  resize: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.anvil-role-task-input:focus {
+  outline: none;
+  border-color: #374151;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.anvil-role-task-input::placeholder {
+  color: #6B7280;
+}
+
+/* Process Button Role */
+.anvil-role-process-button {
+  background-color: #374151;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.anvil-role-process-button:hover {
+  background-color: #4B5563;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.anvil-role-process-button:active {
+  background-color: #1F2937;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Card Role (for ColumnPanel) */
+.anvil-role-task-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.anvil-role-task-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Task Card Title (Label inside ColumnPanel) */
+.anvil-role-task-card .anvil-label-task-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1F2937;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* Task Card Description (Label inside ColumnPanel) */
+.anvil-role-task-card .anvil-label-task-description {
+  font-size: 0.875rem;
+  color: #4B5563;
+  line-height: 1.43;
+}
+
+/* Task Card Time (Label inside ColumnPanel) */
+.anvil-role-task-card .anvil-label-task-time {
+  font-size: 0.875rem;
+  color: #4B5563;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* Task Status Dot (small Image or Label component) */
+.anvil-role-task-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #374151;
+  flex-shrink: 0;
+}
+
+/* Container for input area (ColumnPanel) */
+.anvil-role-input-container {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E7EB;
+}
+
+/* Container for tasks list (ColumnPanel) */
+.anvil-role-tasks-container {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E7EB;
+}
+
+/* Main container (outermost ColumnPanel) */
+.anvil-role-main-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #F3F4F6;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Set the app background color */
+.anvil-container {
+  background-color: #E5E7EB !important;
+}
