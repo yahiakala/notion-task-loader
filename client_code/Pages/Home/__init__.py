@@ -11,6 +11,7 @@ class Home(HomeTemplate):
         # Any code you write here will run before the form opens.
         self.action_items = []
         self.current_task = None
+        self.ta_transcript.auto_expand = False
         self.rp_tasks.items = [{'title': 'Test 1', 'description': 'Test1 description'}]
 
     def btn_submit_click(self, **event_args):
@@ -35,8 +36,8 @@ class Home(HomeTemplate):
             if status == 'completed':
                 self.timer_prompt.interval = 0
                 self.action_items = self.current_task.get_return_value()
-                # self.rp_tasks.items = self.action_items
-                alert(self.action_items)
+                self.rp_tasks.items = self.action_items
+                # alert(self.action_items)
                 self.btn_submit.enabled = True
                 self.img_loading.visible = False
                 
