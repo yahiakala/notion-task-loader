@@ -50,7 +50,7 @@ def process_transcript_background(transcript):
         response_format=TaskResponse
     )
 
-    message = completion.choices[0].message.parsed
+    message = completion.choices[0].message
     if message.parsed:
         return message.parsed.tasks
     else:
