@@ -1,98 +1,51 @@
-container:
-  type: ColumnPanel
-  properties:
-    col_spacing: large
-    row_spacing: large
-    background: theme:surface
-    spacing_above: large
-    spacing_below: large
-    padding: 32
 components:
-- type: ColumnPanel
-  properties:
-    role: card
-    background: theme:surface
-    border: 1
-    padding: 24
-  layout_properties:
-    grow: 0
-    col_widths: {}
-  components:
-  - type: Label
-    properties:
-      text: Task Processor
-      role: headline
-      font_size: 24
-      bold: true
-      foreground: theme:primary
-    layout_properties:
-      grow: 0
-  - type: Label
-    properties:
-      text: Enter your transcript below to process tasks
-      role: body
-      italic: true
-      foreground: theme:secondary
-    layout_properties:
-      grow: 0
-  - type: Spacer
-    properties:
-      height: 16
-  - type: TextArea
+- components:
+  - layout_properties: {grow: 0}
+    properties: {bold: true, font_size: 24, foreground: 'theme:primary', role: headline, text: Task Processor}
+    type: Label
+  - layout_properties: {grow: 0}
+    properties: {foreground: 'theme:secondary', italic: true, role: body, text: Enter your transcript below to process tasks}
+    type: Label
+  - properties: {height: 16}
+    type: Spacer
+  - layout_properties: {grow: 0}
     name: ta_transcript
-    properties:
-      placeholder: Enter transcript here...
-      role: outlined
-      height: 150
-      font_size: 16
-    layout_properties:
-      grow: 0
-  - type: FlowPanel
-    properties:
-      align: right
-      spacing: medium
-      padding: 8
-    layout_properties:
-      grow: 0
-    components:
-    - type: Button
-      name: btn_submit
-      properties:
-        text: Process Tasks
-        role: filled-button
-        icon: fa:tasks
-        bold: true
-        font_size: 16
-      layout_properties: {}
-    - type: Image
-      name: img_loading
-      properties:
-        source: _/theme/loading8.gif
-        height: 40
-        visible: false
-  - type: Timer
-    name: timer_prompt
-    properties:
-      interval: 0
-- type: ColumnPanel
-  properties:
-    role: card
-    background: theme:surface
-    border: 1
-    padding: 24
+    properties: {font_size: 16, height: 150, placeholder: Enter transcript here..., role: outlined}
+    type: TextArea
+  - components: []
+    layout_properties: {grow: 0}
+    properties: {align: right, padding: 8, spacing: medium}
+    type: FlowPanel
+  - name: timer_prompt
+    properties: {interval: 0}
+    type: Timer
   layout_properties:
+    col_widths: {}
     grow: 0
-  components:
-  - type: Label
-    properties:
-      text: Tasks
-      role: headline
-      font_size: 20
-      bold: true
-      foreground: theme:primary
-  - type: RepeatingPanel
-    name: rp_tasks
-    properties:
-      item_template: Pages.Home.Tasks
-      spacing_above: small
-      spacing_below: small
+  properties: {background: 'theme:surface', border: 1, padding: 24, role: card}
+  type: ColumnPanel
+- components:
+  - name: img_loading
+    properties: {height: 40, source: _/theme/loading8.gif, visible: false}
+    type: Image
+  - event_bindings: {click: btn_submit_click}
+    name: btn_submit
+    properties: {bold: true, font_size: 16, icon: 'fa:tasks', role: filled-button, text: Process Tasks}
+    type: Button
+  layout_properties: {grid_position: 'ZNOVEF,KUPJLX'}
+  name: fp_submit
+  properties: {align: right, vertical_align: middle}
+  type: FlowPanel
+- components:
+  - properties: {bold: true, font_size: 20, foreground: 'theme:primary', role: headline, text: Tasks}
+    type: Label
+  - name: rp_tasks
+    properties: {item_template: Pages.Home.Tasks, spacing_above: small, spacing_below: small}
+    type: RepeatingPanel
+  layout_properties: {grow: 0}
+  properties: {background: 'theme:surface', border: 1, padding: 24, role: card}
+  type: ColumnPanel
+container:
+  properties: {background: 'theme:surface', col_spacing: large, padding: 32, row_spacing: large, spacing_above: large, spacing_below: large}
+  type: ColumnPanel
+is_package: true

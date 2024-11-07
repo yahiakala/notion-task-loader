@@ -1,22 +1,17 @@
-container:
-  type: ColumnPanel
-  properties:
-    role: tonal-card
-    background: theme:surface-variant
-    border: 1
-    padding: 16
-    spacing_above: small
-    spacing_below: small
 components:
-- type: Label
-  properties:
-    text: {title}
-    role: title
+- properties:
     bold: true
     foreground: theme:on-surface-variant
-- type: Label
-  properties:
-    text: {description}
-    role: body
-    italic: true
+    role: title
+    text: {title: null}
+  type: Label
+- properties:
     foreground: theme:on-surface-variant
+    italic: true
+    role: body
+    text: {description: null}
+  type: Label
+container:
+  properties: {background: 'theme:surface-variant', border: 1, padding: 16, role: tonal-card, spacing_above: small, spacing_below: small}
+  type: ColumnPanel
+is_package: true
