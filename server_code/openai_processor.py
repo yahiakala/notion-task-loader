@@ -35,15 +35,16 @@ def process_transcript_background(transcript):
         "Extract action items with titles and descriptions."
     )
 
-    completion = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",  # Using model with 128k context window
+    # Use beta.chat.completions.parse for Pydantic model support
+    completion = client.beta.chat.completions.parse(
+        model="gpt-4o-2024-08-06",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
         temperature=0.7,
         max_tokens=4000,
-        response_format=ActionItem
+        response_format=list[ActionItem]
     )
 
     return completion.choices[0].message.parsed
@@ -53,5 +54,8 @@ def process_transcript_background(transcript):
 def process_transcript(transcript):
     """Start background processing and return task ID."""
     # Start background task
-    task = anvil.server.launch_background_task('process_transcript_background', transcript)
+    task = anvil.server.launch_background_task(
+        'process_transcript_background', 
+        transcript
+    )
     return task
