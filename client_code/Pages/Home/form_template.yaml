@@ -1,29 +1,98 @@
+container:
+  type: ColumnPanel
+  properties:
+    col_spacing: large
+    row_spacing: large
+    background: theme:surface
+    spacing_above: large
+    spacing_below: large
+    padding: 32
 components:
-- layout_properties: {grid_position: 'JKMQPH,DUSUXI'}
-  name: lbl_title
-  properties: {text: Home Detail}
-  type: Label
-- event_bindings: {tick: timer_prompt_tick}
-  layout_properties: {grid_position: 'ATYNVM,TIWRTI'}
-  name: timer_prompt
-  properties: {interval: 0}
-  type: Timer
-- layout_properties: {grid_position: 'ADFZQO,PQIHFW'}
-  name: ta_transcript
-  properties: {height: '100', role: outlined}
-  type: TextArea
-- layout_properties: {grid_position: 'JRLBHO,XCNYPZ'}
-  name: rp_tasks
-  properties: {item_template: Pages.Home.Tasks}
-  type: RepeatingPanel
-- event_bindings: {click: btn_submit_click}
-  layout_properties: {grid_position: 'LFMKSV,VEFRUA'}
-  name: btn_submit
-  properties: {role: filled-button, text: Process}
-  type: Button
-- layout_properties: {grid_position: 'ZOGJTN,KJNOZA'}
-  name: img_loading
-  properties: {height: 77.3984375, source: _/theme/loading8.gif, visible: false}
-  type: Image
-container: {type: ColumnPanel}
-is_package: true
+- type: ColumnPanel
+  properties:
+    role: card
+    background: theme:surface
+    border: 1
+    padding: 24
+  layout_properties:
+    grow: 0
+    col_widths: {}
+  components:
+  - type: Label
+    properties:
+      text: Task Processor
+      role: headline
+      font_size: 24
+      bold: true
+      foreground: theme:primary
+    layout_properties:
+      grow: 0
+  - type: Label
+    properties:
+      text: Enter your transcript below to process tasks
+      role: body
+      italic: true
+      foreground: theme:secondary
+    layout_properties:
+      grow: 0
+  - type: Spacer
+    properties:
+      height: 16
+  - type: TextArea
+    name: ta_transcript
+    properties:
+      placeholder: Enter transcript here...
+      role: outlined
+      height: 150
+      font_size: 16
+    layout_properties:
+      grow: 0
+  - type: FlowPanel
+    properties:
+      align: right
+      spacing: medium
+      padding: 8
+    layout_properties:
+      grow: 0
+    components:
+    - type: Button
+      name: btn_submit
+      properties:
+        text: Process Tasks
+        role: filled-button
+        icon: fa:tasks
+        bold: true
+        font_size: 16
+      layout_properties: {}
+    - type: Image
+      name: img_loading
+      properties:
+        source: _/theme/loading8.gif
+        height: 40
+        visible: false
+  - type: Timer
+    name: timer_prompt
+    properties:
+      interval: 0
+- type: ColumnPanel
+  properties:
+    role: card
+    background: theme:surface
+    border: 1
+    padding: 24
+  layout_properties:
+    grow: 0
+  components:
+  - type: Label
+    properties:
+      text: Tasks
+      role: headline
+      font_size: 20
+      bold: true
+      foreground: theme:primary
+  - type: RepeatingPanel
+    name: rp_tasks
+    properties:
+      item_template: Pages.Home.Tasks
+      spacing_above: small
+      spacing_below: small
