@@ -8,6 +8,9 @@ class ActionItem(BaseModel):
     title: str
     description: str
 
+class TaskResponse(BaseModel):
+    tasks: list[ActionItem]
+
 
 system_prompt = """
 You are an AI assistant that extracts action items from meeting
@@ -44,10 +47,14 @@ def process_transcript_background(transcript):
         ],
         temperature=0.7,
         max_tokens=4000,
-        response_format=list[ActionItem]
+        response_format=TaskResponse
     )
 
-    return completion.choices[0].message.parsed
+    message = completion.choices[0].message.parsed
+    if message.parsed:
+        return message.parsed.tasks
+    else:
+        return message.refusal
 
 
 @anvil.server.callable
