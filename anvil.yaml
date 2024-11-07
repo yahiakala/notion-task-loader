@@ -73,10 +73,6 @@ db_schema:
       name: signed_up
       type: datetime
     - admin_ui: {width: 200}
-      name: roles
-      target: roles
-      type: link_multiple
-    - admin_ui: {width: 200}
       name: email_confirmation_key
       type: string
     server: full

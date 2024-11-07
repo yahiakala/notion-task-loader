@@ -15,10 +15,8 @@ For each action item you identify:
 1. Create a clear, concise title (1 line)
 2. Write a detailed description explaining the context and what needs
 to be done (1 paragraph)
-3. Format each action item as a dictionary with 'title' and
-'description' keys
 
-Return the results as a Python list of dictionaries.
+Return the results as a JSON object.
 Example format:
 
 [
@@ -27,11 +25,12 @@ Example format:
         "description": "Schedule a recurring team sync meeting every Monday at 10am to discuss project progress and blockers. This was identified as necessary due to communication gaps mentioned in the transcript."
     },
     {
-        "title": "Update documentation",\n'
+        "title": "Update documentation"
         "description": "Review and update the API documentation to include the new endpoints discussed in the meeting. Several team members mentioned outdated documentation causing confusion."
     }
 ]
 
+BE STRICT IN THIS FORMAT.
 """
 
 
@@ -60,20 +59,23 @@ def process_transcript_background(transcript):
         max_tokens=4000  # Allowing for lengthy responses
     )
     
+
+    return response.choices[0].message.content
+
     # The response will be a string representation of a Python list of dicts
     # We need to evaluate it safely to convert it to actual Python objects
-    import ast
-    try:
-        action_items = ast.literal_eval(response.choices[0].message.content)
-        return action_items
-    except Exception as e:
-        # If there's any error in parsing, return an empty list
-        print(f"Error parsing OpenAI response: {str(e)}")
-        return []
+    # import ast
+    # try:
+    #     action_items = ast.literal_eval(response.choices[0].message.content)
+    #     return action_items
+    # except Exception as e:
+    #     # If there's any error in parsing, return an empty list
+    #     print(f"Error parsing OpenAI response: {str(e)}")
+    #     return []
 
 
 @anvil.server.callable
-def start_processing(transcript):
+def process_transcript(transcript):
     """Start background processing and return task ID."""
     # Start background task
     task = anvil.server.launch_background_task('process_transcript_background', transcript)

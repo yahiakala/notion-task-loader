@@ -6,7 +6,7 @@ components:
 - event_bindings: {tick: timer_prompt_tick}
   layout_properties: {grid_position: 'ATYNVM,TIWRTI'}
   name: timer_prompt
-  properties: {}
+  properties: {interval: 0}
   type: Timer
 - layout_properties: {grid_position: 'ATYNVM,LJXZJX'}
   name: ta_transcript
@@ -17,14 +17,13 @@ components:
   name: btn_submit
   properties: {align: center, appearance: filled, icon: 'mi:send', tooltip: Submit}
   type: form:dep_s2fhmt4crkahq5:_Components.IconButton
-- event_bindings: {click: btn_edit_prompt_click}
-  layout_properties: {grid_position: 'TTBGKZ,MMBFAC'}
-  name: btn_edit_prompt
-  properties: {align: center, appearance: outlined, text: Edit Prompt}
-  type: form:dep_s2fhmt4crkahq5:_Components.Button
-- layout_properties: {grid_position: 'IHJACH,YJMIYM'}
-  name: ta_prompt
-  properties: {appearance: outlined, enabled: false}
-  type: form:dep_s2fhmt4crkahq5:_Components.TextInput.TextArea
+- layout_properties: {grid_position: 'ZOGJTN,KJNOZA'}
+  name: img_loading
+  properties: {height: 77.3984375, source: _/theme/loading8.gif, visible: false}
+  type: Image
+- layout_properties: {grid_position: 'UIASKD,MAEQZP'}
+  name: rp_tasks
+  properties: {item_template: Pages.Home.Tasks}
+  type: RepeatingPanel
 container: {type: ColumnPanel}
 is_package: true
