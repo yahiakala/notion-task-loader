@@ -98,14 +98,14 @@ db_schema:
       name: roles
       target: roles
       type: link_multiple
-    - admin_ui: {order: 3, width: 200}
-      name: dev_task_db
-      type: string
     - admin_ui: {order: 4, width: 200}
       name: notion_user_id
       type: string
     - admin_ui: {order: 6, width: 200}
       name: notion_team_user_id
+      type: string
+    - admin_ui: {order: 7, width: 200}
+      name: notion_task_db_id
       type: string
     server: full
     title: UserTenant
