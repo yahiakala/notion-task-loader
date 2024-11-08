@@ -93,7 +93,7 @@ components:
     type: TextBox
   - layout_properties: {grid_position: 'OGWBMU,ZBMEMB'}
     name: btn_save
-    properties: {role: process-button, text: Save}
+    properties: {icon: 'fa:save', role: process-button, text: Save}
     type: Button
   layout_properties: {grid_position: 'BEPDCM,EMLCXX'}
   name: cp_notion
