@@ -38,6 +38,10 @@ components:
     name: rb_notion_db_id
     properties: {role: task-input}
     type: TextBox
+  - layout_properties: {grid_position: 'EMRLJU,ZICKLL'}
+    name: btn_save
+    properties: {icon: 'fa:save', role: process-button, text: Save}
+    type: Button
   layout_properties: {grid_position: 'ENTEYF,DDUKDS'}
   name: cp_notion
   properties: {col_widths: '{"GGKSNB":20,"KAPNQQ":40,"OZMIUX":20,"GSEZME":40,"TDFEOP":20,"DRVSHB":40}', role: input-container}
