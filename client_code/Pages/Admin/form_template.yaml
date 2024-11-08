@@ -1,8 +1,14 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'HSCILY,GGKSNB'}
+  - data_bindings: []
+    layout_properties: {grid_position: 'HSCILY,GGKSNB'}
     name: lbl_notion_api_key
-    properties: {text: Notion API Key}
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+        padding: [null, null, null, null]
+      text: Notion Workspace API Key
     type: Label
   - layout_properties: {grid_position: 'HSCILY,KAPNQQ'}
     name: tb_notion_api_key
@@ -10,7 +16,11 @@ components:
     type: TextBox
   - layout_properties: {grid_position: 'CMTGTZ,OZMIUX'}
     name: lbl_notion_userid
-    properties: {text: Notion User ID}
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+      text: Notion User ID
     type: Label
   - layout_properties: {grid_position: 'CMTGTZ,GSEZME'}
     name: tb_notion_userid
@@ -18,7 +28,11 @@ components:
     type: TextBox
   - layout_properties: {grid_position: 'TYYLYV,TDFEOP'}
     name: lbl_notion_db_id
-    properties: {text: Notion Database ID}
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+      text: Notion Workspace Database ID
     type: Label
   - layout_properties: {grid_position: 'TYYLYV,DRVSHB'}
     name: rb_notion_db_id
@@ -26,7 +40,7 @@ components:
     type: TextBox
   layout_properties: {grid_position: 'ENTEYF,DDUKDS'}
   name: cp_notion
-  properties: {col_widths: '{"GGKSNB":15,"KAPNQQ":45,"OZMIUX":15,"GSEZME":45,"TDFEOP":15,"DRVSHB":45}', role: input-container}
+  properties: {col_widths: '{"GGKSNB":20,"KAPNQQ":40,"OZMIUX":20,"GSEZME":40,"TDFEOP":20,"DRVSHB":40}', role: input-container}
   type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true
