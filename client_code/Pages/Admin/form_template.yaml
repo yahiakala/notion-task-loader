@@ -39,7 +39,7 @@ components:
       text: Notion Workspace Database ID
     type: Label
   - layout_properties: {grid_position: 'TYYLYV,DRVSHB'}
-    name: rb_notion_db_id
+    name: tb_notion_db_id
     properties: {role: task-input}
     type: TextBox
   - event_bindings: {click: btn_save_notion_click}
@@ -51,5 +51,7 @@ components:
   name: cp_notion
   properties: {col_widths: '{"GGKSNB":20,"KAPNQQ":40,"OZMIUX":20,"GSEZME":40,"TDFEOP":20,"DRVSHB":40}', role: input-container}
   type: ColumnPanel
-container: {type: ColumnPanel}
+container:
+  event_bindings: {show: form_show}
+  type: ColumnPanel
 is_package: true
