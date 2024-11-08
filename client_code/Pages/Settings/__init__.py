@@ -75,3 +75,7 @@ class Settings(SettingsTemplate):
             self.rp_mfa.items = self.user['mfa']
         except anvil.users.AuthenticationFailed as e:
             alert('Password is incorrect.')
+
+    def btn_save_notion_click(self, **event_args):
+        """This method is called when the button is clicked"""
+        pass
