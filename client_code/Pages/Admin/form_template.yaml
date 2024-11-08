@@ -40,7 +40,7 @@ components:
     type: TextBox
   - layout_properties: {grid_position: 'EMRLJU,ZICKLL'}
     name: btn_save
-    properties: {icon: 'fa:save', role: process-button, text: Save}
+    properties: {align: right, icon: 'fa:save', role: process-button, text: Save}
     type: Button
   layout_properties: {grid_position: 'ENTEYF,DDUKDS'}
   name: cp_notion
