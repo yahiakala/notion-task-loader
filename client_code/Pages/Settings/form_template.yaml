@@ -53,33 +53,47 @@ components:
   properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: tonal-card, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
   type: ColumnPanel
 - components:
-  - layout_properties: {grid_position: 'HSCILY,GGKSNB'}
-    name: lbl_notion_api
-    properties: {text: Notion API Key}
+  - data_bindings: []
+    layout_properties: {grid_position: 'KFUXPR,LTRCPJ'}
+    name: lbl_notion_api_key
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+        padding: [null, null, null, null]
+      text: Notion Personal Workspace API Key
     type: Label
-  - layout_properties: {grid_position: 'HSCILY,KAPNQQ'}
-    name: text_box_1
+  - layout_properties: {grid_position: 'KFUXPR,SRKYVJ'}
+    name: tb_notion_api_key
     properties: {role: task-input}
     type: TextBox
-  - layout_properties: {grid_position: 'CMTGTZ,OZMIUX'}
-    name: lbl_notion_userid
-    properties: {text: Notion User ID}
-    type: Label
-  - layout_properties: {grid_position: 'CMTGTZ,GSEZME'}
-    name: text_box_2
-    properties: {role: task-input}
-    type: TextBox
-  - layout_properties: {grid_position: 'TYYLYV,TDFEOP'}
+  - layout_properties: {grid_position: 'HUTXAA,YPUFGJ'}
     name: lbl_notion_db_id
-    properties: {text: Notion Database ID}
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+      text: Notion Personal Database ID
     type: Label
-  - layout_properties: {grid_position: 'TYYLYV,DRVSHB'}
-    name: text_box_3
+  - layout_properties: {grid_position: 'HUTXAA,FZHTNT'}
+    name: tb_notion_db_id
     properties: {role: task-input}
     type: TextBox
-  layout_properties: {grid_position: 'HGEDLW,NFBLII'}
+  - layout_properties: {grid_position: 'IJCPJK,MEYHNM'}
+    name: lbl_notion_userid
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+      text: Notion Personal User ID
+    type: Label
+  - layout_properties: {grid_position: 'IJCPJK,QDCKLU'}
+    name: tb_notion_userid
+    properties: {role: task-input}
+    type: TextBox
+  layout_properties: {grid_position: 'BEPDCM,EMLCXX'}
   name: cp_notion
-  properties: {role: input-container}
+  properties: {col_widths: '{"LTRCPJ":20,"SRKYVJ":40,"YPUFGJ":20,"FZHTNT":40,"MEYHNM":20,"QDCKLU":40}', role: input-container}
   type: ColumnPanel
 - components:
   - layout_properties: {grid_position: 'JJQQEZ,KWFYWY'}
