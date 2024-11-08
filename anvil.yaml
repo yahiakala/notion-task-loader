@@ -40,6 +40,9 @@ db_schema:
     - admin_ui: {order: 1, width: 200}
       name: new_roles
       type: simpleObject
+    - admin_ui: {order: 2, width: 200}
+      name: notion_api_key
+      type: string
     server: full
     title: Tenants
   users:
