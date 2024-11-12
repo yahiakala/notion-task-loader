@@ -30,6 +30,7 @@ class Router(RouterTemplate):
         else:
             router.navigate(path=sender.tag.path)
 
+        # TODO: move to some equivalent to on_navigation
         for link in self.cp_sidebar.get_components():
             if type(link) == Link:
                 link.role = "selected" if link.tag.path == sender.tag.path else None
