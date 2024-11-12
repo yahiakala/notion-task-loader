@@ -11,8 +11,7 @@ class Admin(AdminTemplate):
 
     def form_show(self, **event_args):
         """This method is called when the form is shown on the page"""
-        # self.notion_stuff = Global.tenant_notion_info
-        pass
+        self.notion_stuff = Global.tenant_notion_info
     
     def btn_save_notion_click(self, **event_args):
         """This method is called when the button is clicked"""
