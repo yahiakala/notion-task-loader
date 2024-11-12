@@ -95,14 +95,26 @@ components:
     name: tb_notion_userid
     properties: {role: task-input}
     type: TextBox
+  - layout_properties: {grid_position: 'UTCYUI,LYBASM'}
+    name: lbl_notion_team_userid
+    properties:
+      role: input-prompt
+      spacing:
+        margin: ['8', null, null, null]
+      text: Notion Team User ID
+    type: Label
+  - layout_properties: {grid_position: 'UTCYUI,ETTZAP'}
+    name: tb_notion_team_userid
+    properties: {role: task-input}
+    type: TextBox
   - event_bindings: {click: btn_save_notion_click}
-    layout_properties: {grid_position: 'OGWBMU,ZBMEMB'}
+    layout_properties: {grid_position: 'FVXSUA,SEGJWS'}
     name: btn_save_notion
     properties: {align: right, icon: 'fa:save', role: process-button, text: Save}
     type: Button
   layout_properties: {grid_position: 'BEPDCM,EMLCXX'}
   name: cp_notion
-  properties: {col_widths: '{"LTRCPJ":20,"SRKYVJ":40,"YPUFGJ":20,"FZHTNT":40,"MEYHNM":20,"QDCKLU":40}', role: input-container}
+  properties: {col_widths: '{"LTRCPJ":20,"SRKYVJ":40,"YPUFGJ":20,"FZHTNT":40,"MEYHNM":20,"QDCKLU":40,"LYBASM":20,"ETTZAP":40}', role: input-container}
   type: ColumnPanel
 - components:
   - layout_properties: {grid_position: 'JJQQEZ,KWFYWY'}
