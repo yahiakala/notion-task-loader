@@ -21,25 +21,19 @@ class Router(RouterTemplate):
         self.set_account_state(user)
 
     def nav_click(self, sender, **event_args):
-        load_cache = True
         if sender.tag.path == "":
             if Global.user:
                 self.set_account_state(Global.user)
                 router.navigate(path='app/home')
-                # routing.set_url_hash("app/home", load_from_cache=load_cache)
             else:
                 router.navigate(path='/signin')
-                # routing.set_url_hash("signin", load_from_cache=load_cache)
         else:
             router.navigate(path=sender.tag.path)
-            # routing.set_url_hash(sender.tag.url_hash, load_from_cache=load_cache)
 
-    def on_navigation(self, url_hash, url_pattern, url_dict, unload_form):
-        """Whenever a new route is loaded."""
         for link in self.cp_sidebar.get_components():
             if type(link) == Link:
-                link.role = "selected" if link.tag.path == url_pattern else None
-        if url_pattern in ["app", ""]:
+                link.role = "selected" if link.tag.path == sender.tag.path else None
+        if sender.tag.path in ["app", ""]:
             self.link_home.role = "selected"
 
     def on_form_load(self, url_hash, url_pattern, url_dict, form):

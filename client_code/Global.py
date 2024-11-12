@@ -11,7 +11,8 @@ _global_dict = {
 }
 _tenanted_dict = {
     'info': None,
-    'permissions': None
+    'permissions': None,
+    'tenant_notion_info': None
 }
 
 Global = GlobalCache(_global_dict, _tenanted_dict)
