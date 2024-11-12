@@ -46,6 +46,11 @@ components:
     name: link_settings
     properties: {text: Settings, visible: false}
     type: Link
+  - event_bindings: {click: nav_click}
+    layout_properties: {grid_position: 'RERBFF,QJKVET'}
+    name: link_admin
+    properties: {text: Settings, visible: false}
+    type: Link
   layout_properties: {slot: left-nav}
   name: cp_sidebar
   properties: {}

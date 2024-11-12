@@ -15,7 +15,8 @@ class Router(RouterTemplate):
         self.link_home.tag.path = "/app"
         self.link_dev.tag.path = "/app/tests"
         self.link_logout.tag.path = "/app/logout"
-        self.link_settings.tag.path = "/app/admin"
+        self.link_settings.tag.path = "/app/settings"
+        self.link_admin.tag.path = '/app/admin'
 
         user = Global.user
         self.set_account_state(user)
@@ -54,7 +55,8 @@ class Router(RouterTemplate):
     def set_account_state(self, user):
         self.icon_logout.visible = user is not None
         self.link_logout.visible = user is not None
-        self.link_settings.visible = user is not None and 'see_members' in Global.permissions
+        self.link_settings.visible = user is not None
+        self.link_admin.visible = user is not None and 'see_members' in Global.permissions
 
     def link_help_click(self, **event_args):
         """This method is called when the link is clicked"""
