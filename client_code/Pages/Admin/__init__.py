@@ -19,6 +19,7 @@ class Admin(AdminTemplate):
         """This method is called when the button is clicked"""
         anvil.server.call(
             'save_tenant_notion',
+            Global.tenant_id,
             self.tb_notion_api_key.text,
             self.tb_notion_db_id.text
         )
