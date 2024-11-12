@@ -18,3 +18,26 @@ def create_tenant_single():
     admin_role = app_tables.roles.get(tenant=tenant, name='Admin')
     _ = app_tables.usertenant.add_row(tenant=tenant, user=user, roles=[admin_role])
     return get_tenant_single(user, tenant)
+
+
+@anvil.server.callable(require_user=True)
+def save_tenant_notion(tenant_id, api_key, db_id):
+    """Save Notion API key and database ID for a tenant.
+    
+    Args:
+        tenant_id: The ID of the tenant to update
+        api_key: The Notion API key for the team workspace
+        db_id: The Notion database ID for the team task database
+    """
+    user = anvil.users.get_user(allow_remembered=True)
+    
+    # Validate user has permission to edit tenant settings
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    if 'delete_members' not in permissions:
+        raise Exception("Unauthorized")
+    
+    # Update tenant with new Notion info
+    tenant.update(
+        notion_api_key=api_key,
+        notion_db_id=db_id
+    )

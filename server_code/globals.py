@@ -40,6 +40,19 @@ def get_tenant_single(user=None, tenant=None):
     return tenant_dict
 
 
+def get_tenant_notion_info(tenant_id, user):
+    """Get Notion-related information for a tenant"""
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    
+    if 'delete_members' not in permissions:
+        return None
+        
+    return {
+        'notion_api_key': tenant['notion_api_key'],
+        'notion_db_id': tenant['notion_db_id']
+    }
+
+
 def get_all_permissions():
     return [i['name'] for i in app_tables.permissions.search()]
 
@@ -59,6 +72,8 @@ def get_tenanted_data(tenant_id, key):
         return get_permissions(tenant_id, user)
     elif key == 'roles':
         return get_roles(tenant_id, user)
+    elif key == 'tenant_notion_info':
+        return get_tenant_notion_info(tenant_id, user)
 
 
 
