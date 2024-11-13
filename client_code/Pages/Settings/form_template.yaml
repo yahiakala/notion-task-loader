@@ -98,6 +98,7 @@ components:
   - layout_properties: {grid_position: 'IJCPJK,QDCKLU'}
     name: tb_notion_userid
     properties:
+      enabled: false
       role: [task-input, skeleton]
     type: TextBox
   - layout_properties: {grid_position: 'UTCYUI,LYBASM'}
@@ -111,6 +112,7 @@ components:
   - layout_properties: {grid_position: 'UTCYUI,ETTZAP'}
     name: tb_notion_team_userid
     properties:
+      enabled: false
       role: [task-input, skeleton]
     type: TextBox
   - event_bindings: {click: btn_save_notion_click}
