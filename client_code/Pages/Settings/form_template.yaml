@@ -137,6 +137,7 @@ components:
   properties: {role: tonal-card, visible: false}
   type: ColumnPanel
 container:
+  event_bindings: {show: form_show}
   properties: {col_widths: '{}'}
   type: ColumnPanel
 is_package: true

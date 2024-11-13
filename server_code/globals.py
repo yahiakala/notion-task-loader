@@ -106,12 +106,5 @@ def get_usertenant_dict(tenant_id):
     user = anvil.users.get_user(allow_remembered=True)
     tenant, usertenant, permissions = validate_user(tenant_id, user)
     
-    # Convert row to dict and add Notion fields
     data = usertenant_row_to_dict(usertenant)
-    data.update({
-        'notion_api_key': usertenant['notion_api_key'],
-        'notion_team_user_id': usertenant['notion_team_user_id'],
-        'notion_task_db_id': usertenant['notion_task_db_id'],
-        'notion_user_id': usertenant['notion_user_id']
-    })
     return data
