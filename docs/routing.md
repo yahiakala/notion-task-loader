@@ -4,6 +4,31 @@
 
 The application uses a custom routing system built on top of Anvil's routing capabilities. The routing system provides URL-based navigation with authentication checks, template management, and form caching.
 
+## Migration from anvil_extras
+
+The application previously used the anvil_extras routing library but has since migrated to a custom routing implementation. Key differences include:
+
+### Nav Links vs Regular Links
+Instead of using regular HTML links or anvil_extras' on_navigation method, the app uses nav links with configured path tags:
+```python
+self.link_home.tag.path = "/app"  # Configure path tag for navigation
+```
+
+Navigation can be triggered in two ways:
+1. Through path-tagged links that work with the router
+2. Programmatic navigation using router.navigate():
+```python
+router.navigate(path='/desired/path', query={'param': 'value'})
+```
+
+### Obsolete on_navigation Method
+The anvil_extras routing library used an on_navigation method for handling route changes. This has been replaced with a more structured approach using:
+- Route classes that inherit from TemplateWithContainerRoute
+- Template management through 'Templates.Static' and 'Templates.Router'
+- Form caching with cache_form = True
+- Authentication middleware through EnsureUserMixin
+
+
 ## Core Components
 
 ### Route Classes
