@@ -36,8 +36,8 @@ Manages tenant-specific configurations.
 |------------|------|-------------|
 | name | string | Tenant name |
 | new_roles | simpleObject | Role configuration data |
-| notion_api_key | string | Notion API integration key for the team workspace. |
-| notion_db_id | string | Notion database identifier for the team task database. |
+| notion_api_key | string | Notion API integration key for the team workspace |
+| notion_db_id | string | Notion database identifier for the team task database |
 
 ### Roles Table
 Defines roles within tenants.
@@ -67,7 +67,8 @@ Links users to tenants and their roles.
 | roles | link_multiple | Links to roles table |
 | notion_user_id | string | User's Notion user ID |
 | notion_team_user_id | string | User's Notion team ID |
-| notion_task_db_id | string | Notion user's personal task database ID |
+| notion_task_db_id | string | User's personal Notion task database ID |
+| notion_api_key | string | User's personal Notion API key |
 
 ## Relationships
 
