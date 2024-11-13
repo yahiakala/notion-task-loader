@@ -1,6 +1,7 @@
 from ._anvil_designer import TasksTemplate
 from anvil import *
 from ....Global import Global
+import anvil.server
 
 
 class Tasks(TasksTemplate):
