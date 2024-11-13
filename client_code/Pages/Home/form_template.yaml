@@ -1,9 +1,8 @@
 components:
-- data_bindings:
-  - {code: '''task-parser-title''', property: role, writeback: false}
+- data_bindings: []
   layout_properties: {grid_position: 'JKMQPH,DUSUXI'}
   name: lbl_title
-  properties: {role: headline, text: Task Parser}
+  properties: {role: task-parser-title, text: Task Parser}
   type: Label
 - event_bindings: {tick: timer_prompt_tick}
   layout_properties: {grid_position: 'ATYNVM,TIWRTI'}
@@ -11,24 +10,21 @@ components:
   properties: {interval: 0}
   type: Timer
 - components:
-  - data_bindings:
-    - {code: '''task-input''', property: role, writeback: false}
+  - data_bindings: []
     layout_properties: {grid_position: 'ENUHRX,DZUEDF'}
     name: ta_transcript
-    properties: {height: '100', placeholder: Enter your transcript here..., role: outlined}
+    properties: {height: '100', placeholder: Enter your transcript here..., role: task-input}
     type: TextArea
-  - data_bindings:
-    - {code: '''process-button''', property: role, writeback: false}
+  - data_bindings: []
     event_bindings: {click: btn_submit_click}
     layout_properties: {grid_position: 'XAFMUD,EAYNBT'}
     name: btn_submit
-    properties: {icon: 'fa:check', role: filled-button, text: Process}
+    properties: {icon: 'fa:check', role: process-button, text: Process}
     type: Button
-  data_bindings:
-  - {code: '''input-container''', property: role, writeback: false}
+  data_bindings: []
   layout_properties: {grid_position: 'AYDZYV,OABCBR'}
   name: cp_input
-  properties: {}
+  properties: {role: input-container}
   type: ColumnPanel
 - layout_properties: {grid_position: 'JRLBHO,XCNYPZ'}
   name: rp_tasks
