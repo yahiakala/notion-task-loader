@@ -22,7 +22,7 @@ def get_headers(api_key):
     }
 
 
-def create_task(title, description, database_id, api_key, notion_user_id=None):
+def create_task(title, description, database_id, api_key, notion_user_id=None, status=None):
     """Create a new task page in Notion database using REST API
     
     Args:
