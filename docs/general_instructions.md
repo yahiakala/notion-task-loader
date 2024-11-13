@@ -44,7 +44,7 @@ response = anvil.http.request(
     method="POST",
     headers={"Content-Type": "application/json"},
     json=True,  # Request body will be JSON-encoded
-    data=data,  # body goes through data arg
+    data=data,  # body goes through the data arg
     timeout=30
 )
 
