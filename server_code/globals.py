@@ -74,7 +74,7 @@ def get_tenanted_data(tenant_id, key):
         return get_roles(tenant_id, user)
     elif key == 'tenant_notion_info':
         return get_tenant_notion_info(tenant_id, user)
-    elif key == 'usertenant_dict':
+    elif key == 'usertenant':
         return get_usertenant_dict(tenant_id)
 
 
