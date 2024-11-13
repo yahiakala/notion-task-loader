@@ -123,6 +123,5 @@ def send_to_team_notion(tenant_id, title, description):
         description=description,
         database_id=notion_db_id,
         api_key=notion_api_key,
-        notion_user_id=notion_team_user_id,
         status="Draft"
     )

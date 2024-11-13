@@ -6,7 +6,7 @@ components:
   type: ColumnPanel
 - components:
   - components:
-    - event_bindings: {click: nav_click}
+    - event_bindings: {}
       layout_properties: {}
       name: link_dev
       properties: {text: Dev}

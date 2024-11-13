@@ -91,11 +91,16 @@ def create_task(title, description, database_id, api_key, notion_user_id=None, s
         }
     
     # Make API request
-    return anvil.http.request(
-        url=f"{NOTION_API_URL}/pages",
-        method="POST",
-        headers=get_headers(api_key),
-        data=data,
-        json=True,
-        timeout=30
-    )
+    try:
+        return anvil.http.request(
+            url=f"{NOTION_API_URL}/pages",
+            method="POST",
+            headers=get_headers(api_key),
+            data=data,
+            json=True,
+            timeout=30
+        )
+    except anvil.http.HttpError as e:
+        print(e.status)
+        print(e.content)
+        raise Exception
