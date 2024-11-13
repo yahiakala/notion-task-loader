@@ -69,7 +69,10 @@ components:
     type: Label
   - layout_properties: {grid_position: 'KFUXPR,SRKYVJ'}
     name: tb_notion_api_key
-    properties: {hide_text: true, role: task-input, visible: true}
+    properties:
+      hide_text: true
+      role: [task-input, skeleton]
+      visible: true
     type: TextBox
   - layout_properties: {grid_position: 'HUTXAA,YPUFGJ'}
     name: lbl_notion_db_id
@@ -81,7 +84,8 @@ components:
     type: Label
   - layout_properties: {grid_position: 'HUTXAA,FZHTNT'}
     name: tb_notion_db_id
-    properties: {role: task-input}
+    properties:
+      role: [task-input, skeleton]
     type: TextBox
   - layout_properties: {grid_position: 'IJCPJK,MEYHNM'}
     name: lbl_notion_userid
@@ -93,7 +97,8 @@ components:
     type: Label
   - layout_properties: {grid_position: 'IJCPJK,QDCKLU'}
     name: tb_notion_userid
-    properties: {role: task-input}
+    properties:
+      role: [task-input, skeleton]
     type: TextBox
   - layout_properties: {grid_position: 'UTCYUI,LYBASM'}
     name: lbl_notion_team_userid
@@ -105,7 +110,8 @@ components:
     type: Label
   - layout_properties: {grid_position: 'UTCYUI,ETTZAP'}
     name: tb_notion_team_userid
-    properties: {role: task-input}
+    properties:
+      role: [task-input, skeleton]
     type: TextBox
   - event_bindings: {click: btn_save_notion_click}
     layout_properties: {grid_position: 'FVXSUA,SEGJWS'}
