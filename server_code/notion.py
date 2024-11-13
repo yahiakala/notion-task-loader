@@ -22,6 +22,30 @@ def get_headers(api_key):
     }
 
 
+def get_workspace_users(api_key):
+    """Get list of users in the Notion workspace
+    
+    Args:
+        api_key: The Notion API key to use for authorization
+        
+    Returns:
+        list: List of user objects from Notion
+    """
+    try:
+        response = anvil.http.request(
+            url=f"{NOTION_API_URL}/users",
+            method="GET",
+            headers=get_headers(api_key),
+            json=True,
+            timeout=30
+        )
+        return response.get('results', [])
+    except anvil.http.HttpError as e:
+        print(f"Error getting workspace users: {e.status}")
+        print(e.content)
+        raise Exception("Failed to get workspace users")
+
+
 def create_task(title, description, database_id, api_key, notion_user_id=None, status=None):
     """Create a new task page in Notion database using REST API
     

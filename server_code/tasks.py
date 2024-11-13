@@ -4,7 +4,7 @@ from anvil.tables import app_tables
 
 from .globals import get_permissions, get_tenant_single
 from .helpers import print_timestamp, verify_tenant, validate_user, get_usertenant, get_users_with_permission, populate_roles, usertenant_row_to_dict
-from .notion import create_task
+from .notion import create_task, get_workspace_users
 
 
 @anvil.server.callable(require_user=True)
@@ -39,6 +39,16 @@ def save_tenant_notion(tenant_id, api_key, db_id):
     tenant, usertenant, permissions = validate_user(tenant_id, user)
     if 'delete_members' not in permissions:
         raise Exception("Unauthorized")
+    
+    # Get and print workspace users before updating tenant
+    try:
+        workspace_users = get_workspace_users(api_key)
+        print("Notion Workspace Users:")
+        for user in workspace_users:
+            print(user)
+    except Exception as e:
+        print(f"Error getting workspace users: {str(e)}")
+        # Continue with tenant update even if getting users fails
     
     # Update tenant with new Notion info
     tenant.update(
