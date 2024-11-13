@@ -98,5 +98,26 @@ class Settings(SettingsTemplate):
             alert('Password is incorrect.')
 
     def btn_save_notion_click(self, **event_args):
-        """This method is called when the button is clicked"""
-        pass
+        """Save Notion settings for the current user's tenant"""
+        # Get values from text boxes
+        self.btn_save_notion.enabled = False
+        # Update button text to show saving state
+        self.btn_save_notion.text = "Saving..."
+        
+        # Update settings through server function
+        with anvil.server.no_loading_indicator:
+            updated_usertenant = anvil.server.call(
+                'save_user_notion',
+                Global.tenant_id,
+                self.tb_notion_api_key.text,
+                self.tb_notion_db_id.text,
+                self.tb_notion_userid.text,
+                self.tb_notion_team_userid.text
+            )
+            
+            # Update Global state with new settings
+            Global.usertenant = updated_usertenant
+            
+        # Show success message and restore button text
+        self.btn_save_notion.text = 'Save'
+        self.btn_save_notion.enabled = True

@@ -41,3 +41,28 @@ def save_tenant_notion(tenant_id, api_key, db_id):
         notion_api_key=api_key,
         notion_db_id=db_id
     )
+
+
+@anvil.server.callable(require_user=True)
+def save_user_notion(tenant_id, notion_api_key, notion_db_id, notion_user_id, notion_team_user_id):
+    """Save Notion settings for a user's tenant.
+    
+    Args:
+        tenant_id: The ID of the tenant to update
+        notion_api_key: The Notion API key for personal workspace
+        notion_db_id: The Notion database ID for personal task database
+        notion_user_id: The user's Notion user ID
+        notion_team_user_id: The user's Notion team user ID
+    """
+    user = anvil.users.get_user(allow_remembered=True)
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    
+    # Update the UserTenant row with new Notion settings
+    usertenant.update(
+        notion_api_key=notion_api_key,
+        notion_task_db_id=notion_db_id,
+        notion_user_id=notion_user_id,
+        notion_team_user_id=notion_team_user_id
+    )
+    
+    return usertenant_row_to_dict(usertenant)

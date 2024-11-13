@@ -32,6 +32,55 @@ def some_long_function_name_with_many_parameters(param1, param2, param3, param4,
 
 Should be left as-is, even though it triggers linting errors about line length and imports.
 
+## Button Click Event Handlers
+
+When implementing button click event handlers that make server calls, follow this pattern:
+
+1. Disable the button immediately to prevent double-clicks
+2. Update button text to indicate processing state
+3. Use no_loading_indicator to prevent the default loading spinner
+4. Restore button state after the operation completes
+
+Example:
+```python
+def btn_save_click(self, **event_args):
+    """Save data to server"""
+    # Disable button and show processing state
+    self.btn_save.enabled = False
+    self.btn_save.text = "Saving..."
+    
+    # Make server call without loading indicator
+    with anvil.server.no_loading_indicator:
+        updated_data = anvil.server.call(
+            'save_data',
+            self.text_box.text
+        )
+        
+        # Update any client state if needed
+        Global.some_data = updated_data
+        
+    # Restore button state
+    self.btn_save.text = "Save"
+    self.btn_save.enabled = True
+```
+
+This pattern ensures:
+- No accidental double-submissions
+- Clear visual feedback during processing
+- No disruptive loading spinners
+- Proper button state restoration
+
+### User Feedback
+
+For user feedback, use Anvil's built-in alert function:
+```python
+# Correct - use Anvil's alert function
+alert("Operation completed successfully")
+
+# Incorrect - Notification is not a valid Anvil function
+Notification("Operation completed successfully").show()
+```
+
 ## Best Practices
 
 While linting errors should be ignored, developers should still follow these best practices:
