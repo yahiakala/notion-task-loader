@@ -4,6 +4,7 @@ from anvil.tables import app_tables
 
 from .globals import get_permissions, get_tenant_single
 from .helpers import print_timestamp, verify_tenant, validate_user, get_usertenant, get_users_with_permission, populate_roles, usertenant_row_to_dict
+from .notion import create_task
 
 
 @anvil.server.callable(require_user=True)
@@ -66,3 +67,63 @@ def save_user_notion(tenant_id, notion_api_key, notion_db_id, notion_user_id, no
     )
     
     return usertenant_row_to_dict(usertenant)
+
+
+@anvil.server.callable(require_user=True)
+def send_to_personal_notion(tenant_id, title, description):
+    """Send a task to the user's personal Notion workspace.
+    
+    Args:
+        tenant_id: The ID of the tenant
+        title: The task title
+        description: The task description
+    """
+    user = anvil.users.get_user(allow_remembered=True)
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    
+    # Get user's personal Notion settings
+    notion_api_key = usertenant['notion_api_key']
+    notion_db_id = usertenant['notion_task_db_id']
+    notion_user_id = usertenant['notion_user_id']
+    
+    if not notion_api_key or not notion_db_id:
+        raise Exception("Personal Notion workspace not configured")
+        
+    # Create task in personal workspace
+    return create_task(
+        title=title,
+        description=description,
+        database_id=notion_db_id,
+        api_key=notion_api_key,
+        notion_user_id=notion_user_id
+    )
+
+
+@anvil.server.callable(require_user=True)
+def send_to_team_notion(tenant_id, title, description):
+    """Send a task to the team's Notion workspace.
+    
+    Args:
+        tenant_id: The ID of the tenant
+        title: The task title
+        description: The task description
+    """
+    user = anvil.users.get_user(allow_remembered=True)
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    
+    # Get team's Notion settings
+    notion_api_key = tenant['notion_api_key']
+    notion_db_id = tenant['notion_db_id']
+    notion_team_user_id = usertenant['notion_team_user_id']
+    
+    if not notion_api_key or not notion_db_id:
+        raise Exception("Team Notion workspace not configured")
+        
+    # Create task in team workspace
+    return create_task(
+        title=title,
+        description=description,
+        database_id=notion_db_id,
+        api_key=notion_api_key,
+        notion_user_id=notion_team_user_id
+    )

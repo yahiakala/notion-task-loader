@@ -9,34 +9,33 @@ NOTION_API_URL = "https://api.notion.com/v1"
 NOTION_VERSION = "2022-06-28"
 
 
-def get_headers():
-    """Get headers required for Notion API calls"""
+def get_headers(api_key):
+    """Get headers required for Notion API calls
+    
+    Args:
+        api_key: The Notion API key to use for authorization
+    """
     return {
-        "Authorization": f"Bearer {anvil.secrets.get_secret('NOTION_API_KEY')}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
         "Notion-Version": NOTION_VERSION
     }
 
-@anvil.server.callable(require_user=True)
-def create_task(title, description):
+
+def create_task(title, description, database_id, api_key, notion_user_id=None):
     """Create a new task page in Notion database using REST API
     
     Args:
         title (str): Title of the task
         description (str): Description of the task
+        database_id (str): ID of the Notion database to create task in
+        api_key (str): Notion API key for authorization
+        notion_user_id (str, optional): Notion user ID to assign task to
         
     Returns:
         dict: Created page object from Notion
     """
     try:
-        # Get current user's tenant settings
-        user = anvil.users.get_user()
-        usertenant = app_tables.usertenant.get(user=user)  # TODO: verify tenant
-        database_id = usertenant['dev_task_db']
-        
-        # Get user's Notion ID (assuming it's stored in the user profile)
-        notion_user_id = usertenant['notion_user_id']
-        
         # Prepare request body
         data = {
             "parent": {
@@ -92,7 +91,7 @@ def create_task(title, description):
         response = anvil.http.request(
             url=f"{NOTION_API_URL}/pages",
             method="POST",
-            headers=get_headers(),
+            headers=get_headers(api_key),
             json=data,
             json_response=True
         )
