@@ -84,18 +84,16 @@ def send_to_personal_notion(tenant_id, title, description):
     # Get user's personal Notion settings
     notion_api_key = usertenant['notion_api_key']
     notion_db_id = usertenant['notion_task_db_id']
-    notion_user_id = usertenant['notion_user_id']
     
     if not notion_api_key or not notion_db_id:
         raise Exception("Personal Notion workspace not configured")
         
-    # Create task in personal workspace
+    # Create task in personal workspace without status or user assignment
     return create_task(
         title=title,
         description=description,
         database_id=notion_db_id,
-        api_key=notion_api_key,
-        notion_user_id=notion_user_id
+        api_key=notion_api_key
     )
 
 
@@ -119,11 +117,12 @@ def send_to_team_notion(tenant_id, title, description):
     if not notion_api_key or not notion_db_id:
         raise Exception("Team Notion workspace not configured")
         
-    # Create task in team workspace
+    # Create task in team workspace with Draft status and user assignment
     return create_task(
         title=title,
         description=description,
         database_id=notion_db_id,
         api_key=notion_api_key,
-        notion_user_id=notion_team_user_id
+        notion_user_id=notion_team_user_id,
+        status="Draft"
     )

@@ -31,6 +31,7 @@ def create_task(title, description, database_id, api_key, notion_user_id=None, s
         database_id (str): ID of the Notion database to create task in
         api_key (str): Notion API key for authorization
         notion_user_id (str, optional): Notion user ID to assign task to
+        status (str, optional): Status of the task. If None, status won't be included.
         
     Returns:
         dict: Created page object from Notion
@@ -52,11 +53,6 @@ def create_task(title, description, database_id, api_key, notion_user_id=None, s
                             }
                         }
                     ]
-                },
-                "Status": {
-                    "status": {
-                        "name": "Draft"
-                    }
                 }
             },
             "children": [
@@ -76,6 +72,14 @@ def create_task(title, description, database_id, api_key, notion_user_id=None, s
                 }
             ]
         }
+        
+        # Add status if provided
+        if status is not None:
+            data["properties"]["Status"] = {
+                "status": {
+                    "name": status
+                }
+            }
         
         # Add assignee if we have the user's Notion ID
         if notion_user_id:
