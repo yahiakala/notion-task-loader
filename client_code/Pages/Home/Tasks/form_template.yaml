@@ -12,6 +12,26 @@ components:
     name: lbl_desc
     properties: {role: task-description}
     type: Label
+  - components:
+    - event_bindings: {click: btn_personal_click}
+      layout_properties: {}
+      name: btn_personal
+      properties: {icon: 'fa:list', role: process-button, text: Send to Personal}
+      type: Button
+    - event_bindings: {click: btn_team_click}
+      layout_properties: {}
+      name: btn_team
+      properties: {icon: 'fa:group', role: process-button, text: Send to Team}
+      type: Button
+    - event_bindings: {click: btn_discard_click}
+      layout_properties: {}
+      name: btn_discard
+      properties: {background: 'theme:Tertiary', role: process-button, text: Discard}
+      type: Button
+    layout_properties: {grid_position: 'EBOMRR,OMLJIM'}
+    name: fp_actions
+    properties: {}
+    type: FlowPanel
   data_bindings: []
   layout_properties: {grid_position: 'KTYKLV,FKYBLD'}
   name: column_panel_1

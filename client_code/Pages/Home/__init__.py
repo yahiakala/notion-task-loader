@@ -12,7 +12,7 @@ class Home(HomeTemplate):
         self.action_items = []
         self.current_task = None
         self.ta_transcript.auto_expand = False
-        self.rp_tasks.items = [{'title': 'Test 1', 'description': 'Test1 description'}]
+        # self.rp_tasks.items = [{'title': 'Test 1', 'description': 'Test1 description'}]
 
     def btn_submit_click(self, **event_args):
         """Handle transcript submission and start background processing"""
