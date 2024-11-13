@@ -29,27 +29,23 @@ components:
   properties: {}
   type: FlowPanel
 - components:
-  - event_bindings: {click: nav_click}
-    layout_properties: {grid_position: 'CHAVES,CHUIDO'}
-    name: link_home
-    properties: {text: Home}
-    type: Link
+  - layout_properties: {grid_position: 'XKAFVY,SLVFEK'}
+    name: nav_home
+    properties: {path: /app/home, text: Home}
+    type: form:dep_g0by81p383psl:router.NavLink
+  - layout_properties: {grid_position: 'XTRACS,LRJZRG'}
+    name: nav_settings
+    properties: {path: /app/settings, text: Settings, visible: false}
+    type: form:dep_g0by81p383psl:router.NavLink
+  - layout_properties: {grid_position: 'TCSTKB,BGVJUZ'}
+    name: nav_admin
+    properties: {path: /app/admin, text: Admin, visible: false}
+    type: form:dep_g0by81p383psl:router.NavLink
   - components: []
     event_bindings: {click: icon_logout_click}
-    layout_properties: {grid_position: 'GHZOLU,BVEMER'}
+    layout_properties: {grid_position: 'HJGHBW,JXRXYP'}
     name: link_logout
     properties: {text: Logout}
-    type: Link
-  - components: []
-    event_bindings: {click: nav_click}
-    layout_properties: {grid_position: 'FPKVPS,GRULCP'}
-    name: link_settings
-    properties: {text: Settings, visible: false}
-    type: Link
-  - event_bindings: {click: nav_click}
-    layout_properties: {grid_position: 'RERBFF,QJKVET'}
-    name: link_admin
-    properties: {text: Admin, visible: false}
     type: Link
   layout_properties: {slot: left-nav}
   name: cp_sidebar

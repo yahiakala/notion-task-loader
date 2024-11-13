@@ -25,7 +25,7 @@ class Signup(SignupTemplate):
             anvil.js.window.location.href = self.url_dict['redirect']
         elif self.user:
             Global.user = self.user
-            router.navigate(path='/app')
+            router.navigate(path='/app/home')
         pass
 
     def btn_google_click(self, **event_args):

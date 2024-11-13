@@ -14,7 +14,7 @@ class Sign(SignTemplate):
         self.url_dict = routing_context.query
         self.user = Global.user
         if self.user:
-            router.navigate(path='/app')
+            router.navigate(path='/app/home')
 
         is_mobile = anvil.js.window.navigator.userAgent.lower().find("mobi") > -1
         if is_mobile:

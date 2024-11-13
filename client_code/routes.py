@@ -44,7 +44,7 @@ class SignupRoute(BaseRoute):
 
 class HomeRoute(EnsureUserMixin, BaseRoute):
     template = 'Templates.Router'
-    path = '/app'
+    path = '/app/home'
     form = 'Pages.Home'
     cache_form = True
 

@@ -32,7 +32,7 @@ class Signin(SigninTemplate):
             self.tb_email.text = ''
             self.tb_password.text = ''
             Global.user = self.user
-            router.navigate(path='/app')
+            router.navigate(path='/app/home')
     
     def btn_google_click(self, **event_args):
         """Signin with google. Creates a user if none exists."""
