@@ -29,6 +29,9 @@ def save_tenant_notion(tenant_id, api_key, db_id):
         tenant_id: The ID of the tenant to update
         api_key: The Notion API key for the team workspace
         db_id: The Notion database ID for the team task database
+        
+    Returns:
+        dict: Updated tenant notion info containing notion_api_key and notion_db_id
     """
     user = anvil.users.get_user(allow_remembered=True)
     
@@ -42,6 +45,12 @@ def save_tenant_notion(tenant_id, api_key, db_id):
         notion_api_key=api_key,
         notion_db_id=db_id
     )
+    
+    # Return updated tenant notion info
+    return {
+        'notion_api_key': api_key,
+        'notion_db_id': db_id
+    }
 
 
 @anvil.server.callable(require_user=True)

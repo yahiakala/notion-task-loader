@@ -28,9 +28,19 @@ class Admin(AdminTemplate):
     
     def btn_save_notion_click(self, **event_args):
         """This method is called when the button is clicked"""
-        anvil.server.call(
-            'save_tenant_notion',
-            Global.tenant_id,
-            self.tb_notion_api_key.text,
-            self.tb_notion_db_id.text
-        )
+        # Disable button and show processing state
+        self.btn_save_notion.enabled = False
+        self.btn_save_notion.text = "Saving..."
+        
+        # Make server call without loading indicator
+        with anvil.server.no_loading_indicator:
+            Global.tenant_notion_info = anvil.server.call(
+                'save_tenant_notion',
+                Global.tenant_id,
+                self.tb_notion_api_key.text,
+                self.tb_notion_db_id.text
+            )
+        
+        # Restore button state
+        self.btn_save_notion.text = "Save"
+        self.btn_save_notion.enabled = True

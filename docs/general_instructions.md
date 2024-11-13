@@ -88,6 +88,7 @@ When implementing button click event handlers that make server calls, follow thi
 2. Update button text to indicate processing state
 3. Use no_loading_indicator to prevent the default loading spinner
 4. Restore button state after the operation completes
+5. Do not add alerts or other user feedback unless explicitly requested
 
 Example:
 ```python
@@ -117,12 +118,13 @@ This pattern ensures:
 - Clear visual feedback during processing
 - No disruptive loading spinners
 - Proper button state restoration
+- No unnecessary alerts or popups
 
 ### User Feedback
 
-For user feedback, use Anvil's built-in alert function:
+User feedback through alerts should only be added when explicitly requested. When requested, use Anvil's built-in alert function:
 ```python
-# Correct - use Anvil's alert function
+# Correct - use Anvil's alert function when requested
 alert("Operation completed successfully")
 
 # Incorrect - Notification is not a valid Anvil function
