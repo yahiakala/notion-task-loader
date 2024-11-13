@@ -36,71 +36,66 @@ def create_task(title, description, database_id, api_key, notion_user_id=None, s
     Returns:
         dict: Created page object from Notion
     """
-    try:
-        # Prepare request body
-        data = {
-            "parent": {
-                "type": "database_id",
-                "database_id": database_id
-            },
-            "properties": {
-                "title": {
-                    "title": [
+    # Prepare request body
+    data = {
+        "parent": {
+            "type": "database_id",
+            "database_id": database_id
+        },
+        "properties": {
+            "title": {
+                "title": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "content": title
+                        }
+                    }
+                ]
+            }
+        },
+        "children": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "paragraph": {
+                    "rich_text": [
                         {
                             "type": "text",
                             "text": {
-                                "content": title
+                                "content": description
                             }
                         }
                     ]
                 }
-            },
-            "children": [
+            }
+        ]
+    }
+    
+    # Add status if provided
+    if status is not None:
+        data["properties"]["Status"] = {
+            "status": {
+                "name": status
+            }
+        }
+    
+    # Add assignee if we have the user's Notion ID
+    if notion_user_id:
+        data["properties"]["Assignee"] = {
+            "people": [
                 {
-                    "object": "block",
-                    "type": "paragraph",
-                    "paragraph": {
-                        "rich_text": [
-                            {
-                                "type": "text",
-                                "text": {
-                                    "content": description
-                                }
-                            }
-                        ]
-                    }
+                    "id": notion_user_id
                 }
             ]
         }
-        
-        # Add status if provided
-        if status is not None:
-            data["properties"]["Status"] = {
-                "status": {
-                    "name": status
-                }
-            }
-        
-        # Add assignee if we have the user's Notion ID
-        if notion_user_id:
-            data["properties"]["Assignee"] = {
-                "people": [
-                    {
-                        "id": notion_user_id
-                    }
-                ]
-            }
-        
-        # Make API request
-        response = anvil.http.request(
-            url=f"{NOTION_API_URL}/pages",
-            method="POST",
-            headers=get_headers(api_key),
-            json=data,
-            json_response=True
-        )
-        
-        return response
-        
-    except anvil.http.HttpError as e:
-        raise Exception(f"Failed to create Notion task: {str(e)}")
+    
+    # Make API request
+    return anvil.http.request(
+        url=f"{NOTION_API_URL}/pages",
+        method="POST",
+        headers=get_headers(api_key),
+        data=data,
+        json=True,
+        timeout=30
+    )

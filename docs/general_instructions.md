@@ -32,6 +32,54 @@ def some_long_function_name_with_many_parameters(param1, param2, param3, param4,
 
 Should be left as-is, even though it triggers linting errors about line length and imports.
 
+## HTTP Requests with anvil.http
+
+When making HTTP requests using anvil.http, follow these guidelines:
+
+1. Use json=True for JSON requests:
+```python
+# Correct - use json=True for both request body and response parsing
+response = anvil.http.request(
+    url="https://api.example.com/data",
+    method="POST",
+    headers={"Content-Type": "application/json"},
+    json=True,  # Request body will be JSON-encoded
+    data=data,  # body goes through data arg
+    timeout=30
+)
+
+# Incorrect - don't use json_response=True
+response = anvil.http.request(
+    url="https://api.example.com/data",
+    json_response=True  # Wrong parameter name
+)
+```
+
+2. Error Handling:
+```python
+# Correct - let anvil.http handle errors
+def make_request():
+    return anvil.http.request(
+        url="https://api.example.com/data",
+        method="GET",
+        json=True
+    )
+
+# Incorrect - don't wrap in try-except
+def make_request():
+    try:
+        return anvil.http.request(...)
+    except anvil.http.HttpError as e:  # Unnecessary error handling
+        raise Exception(str(e))
+```
+
+3. Optional Parameters:
+   - Use timeout for time-sensitive requests
+   - Set appropriate headers for API calls
+   - Use json=True when working with JSON APIs
+
+This ensures consistent and reliable HTTP request handling across the application.
+
 ## Button Click Event Handlers
 
 When implementing button click event handlers that make server calls, follow this pattern:
