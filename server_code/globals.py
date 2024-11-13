@@ -74,7 +74,8 @@ def get_tenanted_data(tenant_id, key):
         return get_roles(tenant_id, user)
     elif key == 'tenant_notion_info':
         return get_tenant_notion_info(tenant_id, user)
-
+    elif key == 'usertenant_dict':
+        return get_usertenant_dict(tenant_id)
 
 
 def get_users_iterable(tenant_id, user):
@@ -97,3 +98,20 @@ def get_roles(tenant_id, user, usertenant=None, permissions=None, tenant=None):
         role_list = [role_row_to_dict(i) for i in role_search]
         return role_list
     return []
+
+
+@anvil.server.callable(require_user=True)
+def get_usertenant_dict(tenant_id):
+    """Get user tenant data including Notion settings"""
+    user = anvil.users.get_user(allow_remembered=True)
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    
+    # Convert row to dict and add Notion fields
+    data = usertenant_row_to_dict(usertenant)
+    data.update({
+        'notion_api_key': usertenant['notion_api_key'],
+        'notion_team_user_id': usertenant['notion_team_user_id'],
+        'notion_task_db_id': usertenant['notion_task_db_id'],
+        'notion_user_id': usertenant['notion_user_id']
+    })
+    return data
