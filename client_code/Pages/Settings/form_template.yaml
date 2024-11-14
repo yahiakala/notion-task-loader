@@ -95,12 +95,11 @@ components:
         margin: ['8', null, null, null]
       text: Notion Personal User ID
     type: Label
-  - data_bindings:
-    - {code: 'self.item[''notion_users'']', property: items, writeback: false}
-    event_bindings: {change: dd_notion_personal_user_change}
+  - data_bindings: []
+    event_bindings: {}
     layout_properties: {grid_position: 'IJCPJK,AFCYPY'}
     name: dd_notion_personal_user
-    properties: {role: outlined}
+    properties: {include_placeholder: false, role: outlined}
     type: DropDown
   - layout_properties: {grid_position: 'UTCYUI,LYBASM'}
     name: lbl_notion_team_userid
@@ -110,9 +109,8 @@ components:
         margin: ['8', null, null, null]
       text: Notion Team User ID
     type: Label
-  - data_bindings:
-    - {code: 'self.item[''notion_users'']', property: items, writeback: false}
-    event_bindings: {change: dd_notion_team_user_change}
+  - data_bindings: []
+    event_bindings: {}
     layout_properties: {grid_position: 'UTCYUI,UPBOUD'}
     name: dd_notion_team_user
     properties: {role: outlined}

@@ -36,21 +36,21 @@ class Settings(SettingsTemplate):
         # Remove skeleton roles after data is loaded
         self.tb_notion_api_key.role = 'task-input'
         self.tb_notion_db_id.role = 'task-input'
-        self.tb_notion_userid.role = 'task-input'
-        self.tb_notion_team_userid.role = 'task-input'
 
     def load_notion_user_ids(self, **event_args):
         self.dd_notion_personal_user.items = (
-            [(u["name"], u["id"]) for u in self.usertenant['notion_users_personal']]
+            [(u["name"], u["id"]) for u in Global.usertenant['notion_users_personal']]
             if Global.usertenant['notion_users_personal'] else []
         )
-        self.dd_notion_personal_user.selected_value = Global.usertenant['notion_user_id']
+        if self.dd_notion_personal_user.items:
+            self.dd_notion_personal_user.selected_value = Global.usertenant['notion_user_id']
         
         self.dd_notion_team_user.items = (
             [(u["name"], u["id"]) for u in Global.usertenant['notion_users_team']]
             if Global.usertenant['notion_users_team'] else []
         )
-        self.dd_notion_team_user.selected_value = Global.usertenant['notion_team_user_id']
+        if self.dd_notion_team_user.items:
+            self.dd_notion_team_user.selected_value = Global.usertenant['notion_team_user_id']
 
     def btn_chg_pw_click(self, **event_args):
         self.lbl_pw_error.visible = False
