@@ -29,7 +29,7 @@ class Users(UsersTemplate):
         self.init_components(**properties)
 
         # Set dropdown items and selected value
-        self.dd_notion_user.items = self.item["notion_users"]
+        # self.dd_notion_user.items = self.item["notion_users"]
         if self.item.get("selected_notion_user"):
             # Find and select the matching notion user
             for user in self.item["notion_users"]:
@@ -41,5 +41,5 @@ class Users(UsersTemplate):
         """This method is called when an item is selected"""
         self.parent.raise_event(
             'x-update-mapping',
-            user_notion={'email': self.item['email'], 'notion_user_id': ['id']}
+            user_notion={'email': self.item['email'], 'notion_user_id': self.dd_notion_user.selected_value}
         )

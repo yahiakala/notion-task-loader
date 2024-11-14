@@ -79,6 +79,7 @@ class Admin(AdminTemplate):
 
     def update_notion_mapping(self, user_notion, **event_args):
         self.existing_mappings[user_notion['email']] = user_notion['notion_user_id']
+        print(self.existing_mappings)
 
     def btn_save_notion_click(self, **event_args):
         """This method is called when the button is clicked"""
@@ -127,27 +128,11 @@ class Admin(AdminTemplate):
 
     def btn_save_user_mapping_click(self, **event_args):
         """Save mappings between users and notion users."""
-        # Disable button and show processing state
         self.btn_save_user_mapping.enabled = False
         self.btn_save_user_mapping.text = "Saving..."
 
-        # Get mappings from repeating panel
-        mappings = {}
-        for item in self.rp_users.items:
-            # Get selected notion user from dropdown
-            selected_notion_user = None
-            if item["notion_users"]:
-                dd = getattr(self.rp_users.get_components(item)[0], "dd_notion_user")
-                if dd.selected_value:
-                    selected_notion_user = dd.selected_value
-
-            if selected_notion_user:
-                mappings[item["email"]] = selected_notion_user
-
-        # Save mappings without loading indicator
         with anvil.server.no_loading_indicator:
-            anvil.server.call("save_user_notion_mappings", Global.tenant_id, mappings)
+            anvil.server.call("save_user_notion_mappings", Global.tenant_id, self.existing_mappings)
 
-        # Restore button state
         self.btn_save_user_mapping.text = "Save"
         self.btn_save_user_mapping.enabled = True
