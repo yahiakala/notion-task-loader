@@ -105,7 +105,7 @@ def get_users_iterable(tenant_id, user):
     if "see_members" not in permissions:
         return []
     return app_tables.usertenant.client_readable(
-        q.only_cols("user", "first_name", "last_name", "notes", "notion_user_id"),
+        q.only_cols("user", "notion_user_id"),
         tenant=tenant,
     ).search()
 
