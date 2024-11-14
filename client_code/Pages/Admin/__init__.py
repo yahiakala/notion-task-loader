@@ -106,8 +106,17 @@ class Admin(AdminTemplate):
         self.btn_update_users.enabled = False
         self.btn_update_users.text = "Refreshing..."
 
-        # Reload users without loading indicator
+        # Make server call without loading indicator
         with anvil.server.no_loading_indicator:
+            # Call server function to update notion users
+            notion_users = anvil.server.call(
+                "save_tenant_notion_users", Global.tenant_id
+            )
+
+            # Update tenant notion info with new users
+            self.notion_stuff["notion_users"] = notion_users
+
+            # Reload users to update dropdowns with new notion users
             self.load_users()
 
         # Restore button state
