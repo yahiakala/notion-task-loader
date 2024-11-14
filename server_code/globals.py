@@ -69,6 +69,8 @@ def get_tenant_notion_info(tenant_id, user):
     return {
         "notion_api_key": tenant["notion_api_key"],
         "notion_db_id": tenant["notion_db_id"],
+        "notion_user_mapping": tenant["notion_user_mapping"],
+        "notion_users": tenant["notion_users"]
     }
 
 
