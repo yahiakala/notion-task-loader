@@ -28,14 +28,8 @@ class Users(UsersTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        # Set dropdown items and selected value
-        # self.dd_notion_user.items = self.item["notion_users"]
         if self.item.get("selected_notion_user"):
-            # Find and select the matching notion user
-            for user in self.item["notion_users"]:
-                if user["id"] == self.item["selected_notion_user"]:
-                    self.dd_notion_user.selected_value = user
-                    break
+            self.dd_notion_user.selected_value = self.item.get("selected_notion_user")
 
     def dd_notion_user_change(self, **event_args):
         """This method is called when an item is selected"""

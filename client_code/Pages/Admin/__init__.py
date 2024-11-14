@@ -72,7 +72,7 @@ class Admin(AdminTemplate):
             {
                 "email": user["user"]["email"],
                 "notion_users": notion_user_items,
-                "selected_notion_user": self.existing_mappings.get("email"),
+                "selected_notion_user": self.existing_mappings.get(user['user']['email']),
             }
             for user in users.search()
         ]

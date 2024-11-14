@@ -151,5 +151,5 @@ def save_user_notion_mappings(tenant_id, mappings):
     if "delete_members" not in permissions:
         return None
 
-        # Update the notion user ID
-        usertenant["notion_user_mapping"] = mappings
+    # Update the notion user ID
+    tenant["notion_user_mapping"] = mappings
