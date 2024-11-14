@@ -53,20 +53,18 @@ class Admin(AdminTemplate):
     def load_users(self):
         """Load app users and notion users"""
         # Get app users with their notion mappings
-        users = anvil.server.call("get_tenanted_data", Global.tenant_id, "users")
+        users = Global.users
 
         # Get notion users for dropdowns
         notion_users = []
         if self.notion_stuff["notion_api_key"]:
-            notion_users = anvil.server.call(
-                "get_notion_users", self.notion_stuff["notion_api_key"]
-            )
+            notion_users = Global.notion_users
 
         # Format notion users for dropdown
         notion_user_items = [{"name": u["name"], "id": u["id"]} for u in notion_users]
 
         # Get existing mappings
-        existing_mappings = self.notion_stuff.get("notion_user_mapping")
+        existing_mappings = self.notion_stuff["notion_user_mapping"]
 
         # Update repeating panel items with users and notion user options
         self.rp_users.items = [
