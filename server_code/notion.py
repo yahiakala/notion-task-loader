@@ -126,7 +126,7 @@ def create_task(
 
     # Add assignee if we have the user's Notion ID
     if notion_user_id:
-        data["properties"]["Assignee"] = {"people": [{"id": notion_user_id}]}
+        data["properties"]["Assigned"] = {"people": [{"id": notion_user_id}]}
 
     # Make API request
     try:

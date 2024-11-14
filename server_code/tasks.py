@@ -164,7 +164,7 @@ def send_to_team_notion(tenant_id, title, description):
     # Get team's Notion settings
     notion_api_key = tenant["notion_api_key"]
     notion_db_id = tenant["notion_db_id"]
-    # notion_team_user_id = usertenant["notion_team_user_id"]
+    notion_team_user_id = usertenant["notion_team_user_id"]
 
     if not notion_api_key or not notion_db_id:
         raise Exception("Team Notion workspace not configured")
@@ -176,4 +176,5 @@ def send_to_team_notion(tenant_id, title, description):
         database_id=notion_db_id,
         api_key=notion_api_key,
         status="Draft",
+        notion_user_id=notion_team_user_id
     )
