@@ -95,12 +95,13 @@ components:
         margin: ['8', null, null, null]
       text: Notion Personal User ID
     type: Label
-  - layout_properties: {grid_position: 'IJCPJK,QDCKLU'}
-    name: tb_notion_userid
-    properties:
-      enabled: false
-      role: [task-input, skeleton]
-    type: TextBox
+  - data_bindings:
+    - {code: 'self.item[''notion_users'']', property: items, writeback: false}
+    event_bindings: {change: dd_notion_personal_user_change}
+    layout_properties: {grid_position: 'IJCPJK,AFCYPY'}
+    name: dd_notion_personal_user
+    properties: {role: outlined}
+    type: DropDown
   - layout_properties: {grid_position: 'UTCYUI,LYBASM'}
     name: lbl_notion_team_userid
     properties:
@@ -109,12 +110,18 @@ components:
         margin: ['8', null, null, null]
       text: Notion Team User ID
     type: Label
-  - layout_properties: {grid_position: 'UTCYUI,ETTZAP'}
-    name: tb_notion_team_userid
-    properties:
-      enabled: false
-      role: [task-input, skeleton]
-    type: TextBox
+  - data_bindings:
+    - {code: 'self.item[''notion_users'']', property: items, writeback: false}
+    event_bindings: {change: dd_notion_team_user_change}
+    layout_properties: {grid_position: 'UTCYUI,UPBOUD'}
+    name: dd_notion_team_user
+    properties: {role: outlined}
+    type: DropDown
+  - event_bindings: {click: btn_update_users_click}
+    layout_properties: {grid_position: 'FVXSUA,QISPOV'}
+    name: btn_update_users
+    properties: {align: left, icon: 'fa:refresh', role: process-button, text: Refresh Notion Users}
+    type: Button
   - event_bindings: {click: btn_save_notion_click}
     layout_properties: {grid_position: 'FVXSUA,SEGJWS'}
     name: btn_save_notion
@@ -122,7 +129,7 @@ components:
     type: Button
   layout_properties: {grid_position: 'BEPDCM,EMLCXX'}
   name: cp_notion
-  properties: {col_widths: '{"LTRCPJ":20,"SRKYVJ":40,"YPUFGJ":20,"FZHTNT":40,"MEYHNM":20,"QDCKLU":40,"LYBASM":20,"ETTZAP":40}', role: input-container}
+  properties: {col_widths: '{"LTRCPJ":20,"SRKYVJ":40,"YPUFGJ":20,"FZHTNT":40,"MEYHNM":15,"LYBASM":20,"UPBOUD":40,"AFCYPY":31}', role: input-container}
   type: ColumnPanel
 - components:
   - layout_properties: {grid_position: 'JJQQEZ,KWFYWY'}

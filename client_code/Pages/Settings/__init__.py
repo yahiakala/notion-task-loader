@@ -31,14 +31,26 @@ class Settings(SettingsTemplate):
         # Populate Notion fields
         self.tb_notion_api_key.text = usertenant.get('notion_api_key', '')
         self.tb_notion_db_id.text = usertenant.get('notion_task_db_id', '')
-        self.tb_notion_userid.text = usertenant.get('notion_user_id', '')
-        self.tb_notion_team_userid.text = usertenant.get('notion_team_user_id', '')
+        self.load_notion_user_ids()
 
         # Remove skeleton roles after data is loaded
         self.tb_notion_api_key.role = 'task-input'
         self.tb_notion_db_id.role = 'task-input'
         self.tb_notion_userid.role = 'task-input'
         self.tb_notion_team_userid.role = 'task-input'
+
+    def load_notion_user_ids(self, **event_args):
+        self.dd_notion_personal_user.items = (
+            [(u["name"], u["id"]) for u in self.usertenant['notion_users_personal']]
+            if Global.usertenant['notion_users_personal'] else []
+        )
+        self.dd_notion_personal_user.selected_value = Global.usertenant['notion_user_id']
+        
+        self.dd_notion_team_user.items = (
+            [(u["name"], u["id"]) for u in Global.usertenant['notion_users_team']]
+            if Global.usertenant['notion_users_team'] else []
+        )
+        self.dd_notion_team_user.selected_value = Global.usertenant['notion_team_user_id']
 
     def btn_chg_pw_click(self, **event_args):
         self.lbl_pw_error.visible = False
@@ -111,8 +123,8 @@ class Settings(SettingsTemplate):
                 Global.tenant_id,
                 self.tb_notion_api_key.text,
                 self.tb_notion_db_id.text,
-                self.tb_notion_userid.text,
-                self.tb_notion_team_userid.text
+                self.dd_notion_personal_user.selected_value,
+                self.dd_notion_team_user.selected_value
             )
             
             # Update Global state with new settings
@@ -121,3 +133,22 @@ class Settings(SettingsTemplate):
         # Show success message and restore button text
         self.btn_save_notion.text = 'Save'
         self.btn_save_notion.enabled = True
+
+    def btn_update_users_click(self, **event_args):
+        """Update list of Notion workspace users that goes into each dropdown."""
+        # Disable button and show processing state
+        self.btn_update_users.enabled = False
+        self.btn_update_users.text = "Refreshing..."
+
+        # Make server call without loading indicator
+        with anvil.server.no_loading_indicator:
+            # Call server function to update notion users
+            Global.usertenant = anvil.server.call(
+                "save_tenant_notion_users", Global.tenant_id
+            )
+            # Reload users to update dropdowns with new notion users
+            self.load_notion_user_ids()
+
+        # Restore button state
+        self.btn_update_users.text = "Refresh Notion Users"
+        self.btn_update_users.enabled = True

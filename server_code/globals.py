@@ -143,6 +143,8 @@ def save_user_notion_mappings(tenant_id, mappings):
         mappings: List of dicts with:
             - email: App user's email
             - notion_user_id: Selected Notion user ID
+
+    DEPRECATED
     """
     user = anvil.users.get_user(allow_remembered=True)
     tenant, usertenant, permissions = validate_user(tenant_id, user)

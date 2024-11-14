@@ -83,22 +83,16 @@ def save_tenant_notion_users(tenant_id):
 
     # Validate user has permission to edit tenant settings
     tenant, usertenant, permissions = validate_user(tenant_id, user)
-    if "delete_members" not in permissions:
-        raise Exception("Unauthorized")
 
-    # Get Notion API key from tenant
-    api_key = tenant["notion_api_key"]
-    if not api_key:
-        raise Exception("Team Notion workspace not configured")
+    if tenant["notion_api_key"]:
+        notion_users_team = get_notion_users(tenant["notion_api_key"])
+        usertenant.update(notion_users_team=notion_users_team)
 
-    # Get workspace users
-    notion_users = get_notion_users(api_key)
+    if usertenant['notion_api_key']:
+        notion_users_personal = get_notion_users(usertenant['notion_api_key'])
+        usertenant.update(notion_users_personal=notion_users_personal)
 
-    # Save users to tenant
-    tenant.update(notion_users=notion_users)
-
-    return notion_users
-
+    return usertenant_row_to_dict(usertenant)
 
 @anvil.server.callable(require_user=True)
 def save_user_notion(
