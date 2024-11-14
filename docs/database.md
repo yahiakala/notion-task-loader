@@ -38,6 +38,8 @@ Manages tenant-specific configurations.
 | new_roles | simpleObject | Role configuration data |
 | notion_api_key | string | Notion API integration key for the team workspace |
 | notion_db_id | string | Notion database identifier for the team task database |
+| notion_user_mapping | simpleObject | Maps app user emails to Notion user IDs |
+| notion_users | simpleObject | Cached list of Notion workspace users |
 
 ### Roles Table
 Defines roles within tenants.
@@ -97,6 +99,10 @@ Links users to tenants and their roles.
 
 1. The schema implements a multi-tenant architecture with role-based access control (RBAC)
 2. MFA (Multi-Factor Authentication) is supported through the users table
-3. Notion integration is supported at both tenant and user levels
+3. Notion integration is supported at both tenant and user levels:
+   - Tenant level: API key, database ID, user mappings, and cached users
+   - User level: Personal API key, user IDs, and task database ID
 4. The system supports email verification and login session management
 5. Password security features include failure counting and hashing
+6. Notion user mappings are stored at the tenant level to maintain a centralized mapping between app users and Notion users
+7. Notion users are cached at the tenant level to improve performance when displaying user dropdowns
