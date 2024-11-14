@@ -29,6 +29,7 @@ class Admin(AdminTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.rp_users.add_event_handler('x-update-mapping', self.update_notion_mapping)
 
     def form_show(self, **event_args):
         """This method is called when the form is shown on the page"""
@@ -64,17 +65,20 @@ class Admin(AdminTemplate):
         )
 
         # Get existing mappings (default to empty dict if None)
-        existing_mappings = self.notion_stuff.get("notion_user_mapping", {}) or {}
+        self.existing_mappings = self.notion_stuff.get("notion_user_mapping", {}) or {}
 
         # Update repeating panel items with users and notion user options
         self.rp_users.items = [
             {
                 "email": user["user"]["email"],
                 "notion_users": notion_user_items,
-                "selected_notion_user": existing_mappings.get(user["user"]["email"]),
+                "selected_notion_user": self.existing_mappings.get("email"),
             }
             for user in users.search()
         ]
+
+    def update_notion_mapping(self, user_notion, **event_args):
+        self.existing_mappings[user_notion['email']] = user_notion['notion_user_id']
 
     def btn_save_notion_click(self, **event_args):
         """This method is called when the button is clicked"""

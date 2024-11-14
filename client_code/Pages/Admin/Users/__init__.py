@@ -36,3 +36,10 @@ class Users(UsersTemplate):
                 if user["id"] == self.item["selected_notion_user"]:
                     self.dd_notion_user.selected_value = user
                     break
+
+    def dd_notion_user_change(self, **event_args):
+        """This method is called when an item is selected"""
+        self.parent.raise_event(
+            'x-update-mapping',
+            user_notion={'email': self.item['email'], 'notion_user_id': ['id']}
+        )
