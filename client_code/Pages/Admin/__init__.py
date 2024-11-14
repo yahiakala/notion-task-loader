@@ -58,11 +58,9 @@ class Admin(AdminTemplate):
         # Get notion users for dropdowns
         notion_users = self.notion_stuff.get("notion_users", []) or []
 
-        # Format notion users for dropdown
+        # Format notion users for dropdown - convert to list of tuples (display_value, stored_value)
         notion_user_items = (
-            [{"name": u["name"], "id": u["id"]} for u in notion_users]
-            if notion_users
-            else []
+            [(u["name"], u["id"]) for u in notion_users] if notion_users else []
         )
 
         # Get existing mappings (default to empty dict if None)
@@ -137,7 +135,7 @@ class Admin(AdminTemplate):
             if item["notion_users"]:
                 dd = getattr(self.rp_users.get_components(item)[0], "dd_notion_user")
                 if dd.selected_value:
-                    selected_notion_user = dd.selected_value["id"]
+                    selected_notion_user = dd.selected_value
 
             if selected_notion_user:
                 mappings[item["email"]] = selected_notion_user
