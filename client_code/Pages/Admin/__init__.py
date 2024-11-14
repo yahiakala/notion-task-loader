@@ -29,7 +29,6 @@ class Admin(AdminTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
-        self.rp_users.add_event_handler('x-update-mapping', self.update_notion_mapping)
 
     def form_show(self, **event_args):
         """This method is called when the form is shown on the page"""
@@ -44,42 +43,9 @@ class Admin(AdminTemplate):
         self.tb_notion_api_key.text = self.notion_stuff["notion_api_key"]
         self.tb_notion_db_id.text = self.notion_stuff["notion_db_id"]
 
-        # Load users and notion users
-        self.load_users()
-
         # Remove skeleton states
         self.tb_notion_api_key.role = "task-input"
         self.tb_notion_db_id.role = "task-input"
-
-    def load_users(self):
-        """Load app users and notion users"""
-        # Get app users with their notion mappings
-        users = Global.users
-
-        # Get notion users for dropdowns
-        notion_users = self.notion_stuff.get("notion_users", []) or []
-
-        # Format notion users for dropdown - convert to list of tuples (display_value, stored_value)
-        notion_user_items = (
-            [(u["name"], u["id"]) for u in notion_users] if notion_users else []
-        )
-
-        # Get existing mappings (default to empty dict if None)
-        self.existing_mappings = self.notion_stuff.get("notion_user_mapping", {}) or {}
-
-        # Update repeating panel items with users and notion user options
-        self.rp_users.items = [
-            {
-                "email": user["user"]["email"],
-                "notion_users": notion_user_items,
-                "selected_notion_user": self.existing_mappings.get(user['user']['email']),
-            }
-            for user in users.search()
-        ]
-
-    def update_notion_mapping(self, user_notion, **event_args):
-        self.existing_mappings[user_notion['email']] = user_notion['notion_user_id']
-        print(self.existing_mappings)
 
     def btn_save_notion_click(self, **event_args):
         """This method is called when the button is clicked"""
@@ -103,36 +69,3 @@ class Admin(AdminTemplate):
         self.btn_save_notion.text = "Save"
         self.btn_save_notion.enabled = True
 
-    def btn_update_users_click(self, **event_args):
-        """Update list of Notion workspace users that goes into each dropdown."""
-        # Disable button and show processing state
-        self.btn_update_users.enabled = False
-        self.btn_update_users.text = "Refreshing..."
-
-        # Make server call without loading indicator
-        with anvil.server.no_loading_indicator:
-            # Call server function to update notion users
-            notion_users = anvil.server.call(
-                "save_tenant_notion_users", Global.tenant_id
-            )
-
-            # Update tenant notion info with new users
-            self.notion_stuff["notion_users"] = notion_users
-
-            # Reload users to update dropdowns with new notion users
-            self.load_users()
-
-        # Restore button state
-        self.btn_update_users.text = "Refresh Notion Users"
-        self.btn_update_users.enabled = True
-
-    def btn_save_user_mapping_click(self, **event_args):
-        """Save mappings between users and notion users."""
-        self.btn_save_user_mapping.enabled = False
-        self.btn_save_user_mapping.text = "Saving..."
-
-        with anvil.server.no_loading_indicator:
-            anvil.server.call("save_user_notion_mappings", Global.tenant_id, self.existing_mappings)
-
-        self.btn_save_user_mapping.text = "Save"
-        self.btn_save_user_mapping.enabled = True
