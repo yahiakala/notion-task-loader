@@ -41,7 +41,28 @@ components:
     type: Button
   layout_properties: {grid_position: 'ENTEYF,DDUKDS'}
   name: cp_notion
-  properties: {col_widths: '{"GGKSNB":20,"KAPNQQ":40,"GSEZME":40,"TDFEOP":20,"DRVSHB":40}', role: input-container}
+  properties: {col_widths: '{"GGKSNB":20,"KAPNQQ":40,"TDFEOP":20,"DRVSHB":40}', role: input-container}
+  type: ColumnPanel
+- components:
+  - layout_properties: {grid_position: 'SNTTRM,KMDPEV'}
+    name: lbl_notion_users
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: 'fa:user', icon_align: left, italic: false, role: title, spacing_above: small, spacing_below: small, text: Notion Workspace Users, tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SMUMMH,OEIONH'}
+    name: lbl_user
+    properties: {bold: true, text: User Email, underline: true}
+    type: Label
+  - layout_properties: {grid_position: 'SMUMMH,CBZMYQ'}
+    name: lbl_notion_user
+    properties: {bold: true, text: Notion Username, underline: true}
+    type: Label
+  - layout_properties: {grid_position: 'RQVDYO,GVLZBI'}
+    name: rp_users
+    properties: {item_template: Pages.Admin.Users}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'BJYQZY,FWBLMP'}
+  name: cp_users
+  properties: {role: input-container}
   type: ColumnPanel
 container:
   event_bindings: {show: form_show}
