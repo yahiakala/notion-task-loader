@@ -56,13 +56,17 @@ class Admin(AdminTemplate):
         users = Global.users
 
         # Get notion users for dropdowns
-        notion_users = self.notion_stuff['notion_users']
+        notion_users = self.notion_stuff.get("notion_users", []) or []
 
         # Format notion users for dropdown
-        notion_user_items = [{"name": u["name"], "id": u["id"]} for u in notion_users]
+        notion_user_items = (
+            [{"name": u["name"], "id": u["id"]} for u in notion_users]
+            if notion_users
+            else []
+        )
 
-        # Get existing mappings
-        existing_mappings = self.notion_stuff["notion_user_mapping"]
+        # Get existing mappings (default to empty dict if None)
+        existing_mappings = self.notion_stuff.get("notion_user_mapping", {}) or {}
 
         # Update repeating panel items with users and notion user options
         self.rp_users.items = [
