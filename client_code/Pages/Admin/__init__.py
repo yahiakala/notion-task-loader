@@ -56,9 +56,7 @@ class Admin(AdminTemplate):
         users = Global.users
 
         # Get notion users for dropdowns
-        notion_users = []
-        if self.notion_stuff["notion_api_key"]:
-            notion_users = Global.notion_users
+        notion_users = self.notion_stuff['notion_users']
 
         # Format notion users for dropdown
         notion_user_items = [{"name": u["name"], "id": u["id"]} for u in notion_users]
