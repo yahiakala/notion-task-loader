@@ -71,7 +71,7 @@ class Admin(AdminTemplate):
                 "notion_users": notion_user_items,
                 "selected_notion_user": existing_mappings.get(user["user"]["email"]),
             }
-            for user in users
+            for user in users.search()
         ]
 
     def btn_save_notion_click(self, **event_args):

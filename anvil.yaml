@@ -172,7 +172,7 @@ secrets:
     type: secret
     value: {UV2QJOPUQ5LSYHYY: lhSUtlpVOiwNULwRGXBDqNcMmdCWjq3KYpERYhLTu+mIlTJO/C9WuCU489FbMMCQwI0sDXJf/fWhYznim3Sng4REwPgK26KqaKyaIhHdV4XXMlllso7SDpt2Ubfm24tFkj4dJVbWB6f1wvIDSvbxVaOXMAMAr9naCP2/0+GxphxOgxkUzr7iIMBAu67hvNeARfu3L/Tfy/+8jXx+yJEJwXjtZO/H7LCTONQTL6cd5wA3zjcVCXHmHayshmCtoCUNG46GEBOXoi7cj1IwphKVf3VG0j3v0E48S6YW+S3pLfThBKQBsZvYaSway6Hp}
 services:
-- client_config: {}
+- client_config: {enable_v2: true}
   server_config: {}
   source: /runtime/services/tables.yml
 - client_config: {allow_mfa_email_reset: true, allow_remember_me: true, allow_signup: true, confirm_email: true, enable_automatically: false, mfa_timeout_days: 7, remember_me_days: 30, require_mfa: true, require_secure_passwords: true, share_login_status: true, use_email: true, use_google: true, use_token: true}
