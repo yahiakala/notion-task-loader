@@ -44,3 +44,11 @@ class Admin(AdminTemplate):
         # Restore button state
         self.btn_save_notion.text = "Save"
         self.btn_save_notion.enabled = True
+
+    def btn_update_users_click(self, **event_args):
+        """Update list of Notion workspace users that goes into each dropdown."""
+        pass
+
+    def btn_save_user_mapping_click(self, **event_args):
+        """Save mappings between users and notion users."""
+        pass

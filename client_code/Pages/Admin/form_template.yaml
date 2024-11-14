@@ -60,6 +60,16 @@ components:
     name: rp_users
     properties: {item_template: Pages.Admin.Users}
     type: RepeatingPanel
+  - event_bindings: {click: btn_update_users_click}
+    layout_properties: {grid_position: 'FXADRA,ZFJNDM'}
+    name: btn_update_users
+    properties: {align: left, icon: 'fa:refresh', role: process-button, text: Refresh Notion Users}
+    type: Button
+  - event_bindings: {click: btn_save_user_mapping_click}
+    layout_properties: {grid_position: 'FXADRA,HDVNBG'}
+    name: btn_save_user_mapping
+    properties: {align: right, icon: 'fa:save', role: process-button, text: Save}
+    type: Button
   layout_properties: {grid_position: 'BJYQZY,FWBLMP'}
   name: cp_users
   properties: {role: input-container}
