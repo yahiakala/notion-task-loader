@@ -105,7 +105,7 @@ def get_users_iterable(tenant_id, user):
     return app_tables.usertenant.client_readable(
         q.only_cols("user", "first_name", "last_name", "notes", "notion_user_id"),
         tenant=tenant,
-    )
+    ).search()
 
 
 def get_roles(tenant_id, user, usertenant=None, permissions=None, tenant=None):
