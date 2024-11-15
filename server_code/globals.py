@@ -59,21 +59,6 @@ def get_tenant_single(user=None, tenant=None):
     return tenant_dict
 
 
-def get_tenant_notion_info(tenant_id, user):
-    """Get Notion-related information for a tenant"""
-    tenant, usertenant, permissions = validate_user(tenant_id, user)
-
-    if "delete_members" not in permissions:
-        return None
-
-    return {
-        "notion_api_key": tenant["notion_api_key"],
-        "notion_db_id": tenant["notion_db_id"],
-        "notion_user_mapping": tenant["notion_user_mapping"],
-        "notion_users": tenant["notion_users"]
-    }
-
-
 def get_all_permissions():
     return [i["name"] for i in app_tables.permissions.search()]
 
@@ -96,7 +81,31 @@ def get_tenanted_data(tenant_id, key):
     elif key == "tenant_notion_info":
         return get_tenant_notion_info(tenant_id, user)
     elif key == "usertenant":
-        return get_usertenant_dict(tenant_id)
+        return get_usertenant_dict(tenant_id, user)
+    elif key == 'check_api_keys':
+        return check_api_keys(tenant_id, user)
+
+
+def check_api_keys(tenant_id, user):
+    user = anvil.users.get_user(allow_remembered=True)
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+    return {
+        'team': tenant['notion_api_key'] is not None,
+        'personal': usertenant['notion_api_key'] is not None
+    }
+
+
+def get_tenant_notion_info(tenant_id, user):
+    """Get Notion-related information for a tenant"""
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+
+    if "delete_members" not in permissions:
+        return None
+
+    return {
+        "notion_api_key": tenant["notion_api_key"],
+        "notion_db_id": tenant["notion_db_id"]
+    }
 
 
 def get_users_iterable(tenant_id, user):
@@ -124,34 +133,9 @@ def get_roles(tenant_id, user, usertenant=None, permissions=None, tenant=None):
     return []
 
 
-@anvil.server.callable(require_user=True)
-def get_usertenant_dict(tenant_id):
+def get_usertenant_dict(tenant_id, user):
     """Get user tenant data including Notion settings"""
-    user = anvil.users.get_user(allow_remembered=True)
     tenant, usertenant, permissions = validate_user(tenant_id, user)
 
     data = usertenant_row_to_dict(usertenant)
     return data
-
-
-@anvil.server.callable(require_user=True)
-def save_user_notion_mappings(tenant_id, mappings):
-    """Save notion user mappings for app users
-
-    Args:
-        tenant_id: ID of the tenant
-        mappings: List of dicts with:
-            - email: App user's email
-            - notion_user_id: Selected Notion user ID
-
-    DEPRECATED
-    """
-    user = anvil.users.get_user(allow_remembered=True)
-    tenant, usertenant, permissions = validate_user(tenant_id, user)
-
-    # Require admin permission
-    if "delete_members" not in permissions:
-        return None
-
-    # Update the notion user ID
-    tenant["notion_user_mapping"] = mappings

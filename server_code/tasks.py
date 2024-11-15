@@ -178,3 +178,26 @@ def send_to_team_notion(tenant_id, title, description):
         status="Draft",
         notion_user_id=notion_team_user_id
     )
+
+
+@anvil.server.callable(require_user=True)
+def save_user_notion_mappings(tenant_id, mappings):
+    """Save notion user mappings for app users
+
+    Args:
+        tenant_id: ID of the tenant
+        mappings: List of dicts with:
+            - email: App user's email
+            - notion_user_id: Selected Notion user ID
+
+    DEPRECATED
+    """
+    user = anvil.users.get_user(allow_remembered=True)
+    tenant, usertenant, permissions = validate_user(tenant_id, user)
+
+    # Require admin permission
+    if "delete_members" not in permissions:
+        return None
+
+    # Update the notion user ID
+    tenant["notion_user_mapping"] = mappings

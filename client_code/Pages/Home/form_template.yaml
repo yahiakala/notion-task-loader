@@ -34,5 +34,7 @@ components:
   name: img_loading
   properties: {height: 77.3984375, source: _/theme/loading8.gif, visible: false}
   type: Image
-container: {type: ColumnPanel}
+container:
+  event_bindings: {show: form_show}
+  type: ColumnPanel
 is_package: true

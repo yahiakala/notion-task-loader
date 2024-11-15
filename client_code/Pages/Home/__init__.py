@@ -12,7 +12,11 @@ class Home(HomeTemplate):
         self.action_items = []
         self.current_task = None
         self.ta_transcript.auto_expand = False
-
+        
+    def form_show(self, **event_args):
+        """This method is called when the form is shown on the page"""
+        pass
+        
     def btn_submit_click(self, **event_args):
         """Handle transcript submission and start background processing"""
         transcript = self.ta_transcript.text

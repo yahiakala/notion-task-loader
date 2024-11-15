@@ -8,6 +8,14 @@ class Tasks(TasksTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        if Global.check_api_keys['personal']:
+            self.btn_personal.enabled = True
+        else:
+            self.btn_personal.tooltip = 'Please configure your API key.'
+        if Global.check_api_keys['team']:
+            self.btn_team.enabled = True
+        else:
+            self.btn_team.tooltip = 'Please configure your API key.'
 
     def btn_personal_click(self, **event_args):
         """Send task to personal Notion workspace"""
@@ -17,7 +25,7 @@ class Tasks(TasksTemplate):
         
         # Make server call without loading indicator
         with anvil.server.no_loading_indicator:
-            result = anvil.server.call(
+            _ = anvil.server.call(
                 'send_to_personal_notion',
                 Global.tenant_id,
                 self.item['title'],
