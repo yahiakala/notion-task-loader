@@ -5,14 +5,12 @@ import anvil.users
 from ...Global import Global
 
 from routing import router
+import anvil.server
 
 
 class Router(RouterTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
-
-        user = Global.user
-        self.set_account_state(user)
 
     def on_form_load(self, url_hash, url_pattern, url_dict, form):
         """Any time a form is loaded."""
@@ -36,3 +34,8 @@ class Router(RouterTemplate):
     def link_help_click(self, **event_args):
         """This method is called when the link is clicked"""
         alert("For help, contact example@example.com")
+
+    def form_show(self, **event_args):
+        """This method is called when the form is shown on the page"""
+        with anvil.server.no_loading_indicator:
+            self.set_account_state(Global.user)
