@@ -12,9 +12,9 @@ class Router(RouterTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
 
-    def on_form_load(self, url_hash, url_pattern, url_dict, form):
-        """Any time a form is loaded."""
-        self.set_account_state(Global.user)
+    # def on_form_load(self, url_hash, url_pattern, url_dict, form):
+    #     """Any time a form is loaded."""
+    #     self.set_account_state(Global.user)
 
     def icon_logout_click(self, **event_args):
         """This method is called when the link is clicked"""
