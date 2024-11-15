@@ -59,6 +59,9 @@ class Signin(SigninTemplate):
         # Disable button and show processing state
         self.btn_google.enabled = False
         self.btn_google.text = "Signing in..."
+        self.btn_signin.enabled = False
+        self.btn_signin.text = "Signing in..."
+        self.fp_options.visible = False
 
         # Make server call without loading indicator
         with anvil.server.no_loading_indicator:
