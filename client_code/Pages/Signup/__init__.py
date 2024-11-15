@@ -23,13 +23,14 @@ from anvil import *  # noqa
 from anvil_squared import utils
 from routing import router
 
-from ...Global import Global
+from ...Global import Global, AppName
 from ._anvil_designer import SignupTemplate
 
 
 class Signup(SignupTemplate):
     def __init__(self, routing_context: router.RoutingContext, **properties):
         # Set Form properties and Data Bindings.
+        self.lbl_title.text = 'Sign up for ' + AppName
         self.init_components(**properties)
         self.url_dict = routing_context.query
         self.user = Global.user
@@ -88,7 +89,7 @@ class Signup(SignupTemplate):
                 self.tb_email,
                 self.tb_password,
                 self.tb_password_repeat,
-                "Boilerplate",
+                AppName,
                 "signup_with_email_custom",
                 self.lbl_error,
             )

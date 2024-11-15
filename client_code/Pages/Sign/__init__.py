@@ -4,12 +4,12 @@ import anvil.users
 import time
 from routing import router
 
-from ...Global import Global
+from ...Global import Global, AppName
 
 
 class Sign(SignTemplate):
     def __init__(self, routing_context: router.RoutingContext, **properties):
-        # Set Form properties and Data Bindings.
+        self.lbl_title.text = 'Welcome to ' + AppName
         self.init_components(**properties)
         self.url_dict = routing_context.query
         self.user = Global.user

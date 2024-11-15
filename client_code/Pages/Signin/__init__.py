@@ -23,13 +23,13 @@ from anvil import *  # noqa
 from anvil_squared import utils
 from routing import router
 
-from ...Global import Global
+from ...Global import Global, AppName
 from ._anvil_designer import SigninTemplate
 
 
 class Signin(SigninTemplate):
     def __init__(self, routing_context: router.RoutingContext, **properties):
-        # Set Form properties and Data Bindings.
+        self.lbl_title.text = 'Sign in to ' + AppName
         self.init_components(**properties)
         self.routing_context = routing_context
         self.url_dict = routing_context.query
