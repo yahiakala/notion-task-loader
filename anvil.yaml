@@ -140,7 +140,7 @@ dependencies:
 - dep_id: dep_g0by81p383psl
   resolution_hints: {app_id: PIJ33MOHKDZDE7NS, name: routing, package_name: routing}
   version: {branch: yahia}
-metadata: {logo_img: 'asset:BoltAI-2024-10-30_13-51-09_196PM.png', title: Notion Task Loader}
+metadata: {description: Notion Task Loader, logo_img: 'asset:ntl-logo.png', title: Notion Task Loader}
 name: Notion Task Loader
 native_deps:
   head_html: |-
