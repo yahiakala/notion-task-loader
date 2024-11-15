@@ -66,8 +66,8 @@ class Signin(SigninTemplate):
             self.route_user()
 
         # Restore button state
-        self.btn_google.text = "Sign in with Google"
-        self.btn_google.enabled = True
+        # self.btn_google.text = "Sign in with Google"
+        # self.btn_google.enabled = True
 
     def link_forgot_click(self, **event_args):
         """This method is called when the link is clicked"""
