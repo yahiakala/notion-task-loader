@@ -25,6 +25,7 @@ from routing import router
 
 from ...Global import Global, AppName
 from ._anvil_designer import SigninTemplate
+import anvil.server
 
 
 class Signin(SigninTemplate):
@@ -43,16 +44,17 @@ class Signin(SigninTemplate):
 
     def route_user(self, **event_args):
         """Send the user on their way."""
-        if "redirect" in self.url_dict and self.user:
-            self.tb_email.text = ""
-            self.tb_password.text = ""
-            Global.user = self.user
-            anvil.js.window.location.href = self.url_dict["redirect"]
-        elif self.user:
-            self.tb_email.text = ""
-            self.tb_password.text = ""
-            Global.user = self.user
-            router.navigate(path="/app/home")
+        with anvil.server.no_loading_indicator:
+            if "redirect" in self.url_dict and self.user:
+                self.tb_email.text = ""
+                self.tb_password.text = ""
+                Global.user = self.user
+                anvil.js.window.location.href = self.url_dict["redirect"]
+            elif self.user:
+                self.tb_email.text = ""
+                self.tb_password.text = ""
+                Global.user = self.user
+                router.navigate(path="/app/home")
 
     def btn_google_click(self, **event_args):
         """Signin with google. Creates a user if none exists."""
