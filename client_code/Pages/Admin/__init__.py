@@ -69,3 +69,7 @@ class Admin(AdminTemplate):
         self.btn_save_notion.text = "Save"
         self.btn_save_notion.enabled = True
 
+    def btn_refresh_notion_click(self, **event_args):
+        """This method is called when the button is clicked"""
+        pass
+

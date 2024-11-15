@@ -46,11 +46,17 @@ db_schema:
     - admin_ui: {order: 3, width: 200}
       name: notion_db_id
       type: string
-    - admin_ui: {width: 200}
-      name: notion_user_mapping
-      type: simpleObject
-    - admin_ui: {width: 200}
-      name: notion_users
+    - admin_ui: {order: 4, width: 200}
+      name: prop_name_status
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: prop_name_user
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: new_task_status
+      type: string
+    - admin_ui: {order: 3.5, width: 200}
+      name: notion_properties
       type: simpleObject
     server: full
     title: Tenants

@@ -58,7 +58,8 @@ components:
     name: dd_assigned_property
     properties: {role: outlined}
     type: DropDown
-  - layout_properties: {grid_position: 'EMRLJU,OSFXDN'}
+  - event_bindings: {click: btn_refresh_notion_click}
+    layout_properties: {grid_position: 'EMRLJU,OSFXDN'}
     name: btn_refresh_notion
     properties: {align: left, icon: 'fa:refresh', role: process-button, text: Refresh Notion Properties}
     type: Button
