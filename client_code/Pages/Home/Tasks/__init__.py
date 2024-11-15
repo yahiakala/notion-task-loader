@@ -8,14 +8,18 @@ class Tasks(TasksTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
-        if Global.check_api_keys['personal']:
-            self.btn_personal.enabled = True
-        else:
-            self.btn_personal.tooltip = 'Please configure your API key.'
-        if Global.check_api_keys['team']:
-            self.btn_team.enabled = True
-        else:
-            self.btn_team.tooltip = 'Please configure your API key.'
+
+    def form_show(self, **event_args):
+        """This method is called when the form is shown on the page"""
+        with anvil.server.no_loading_indicator:
+            if Global.check_api_keys['personal']:
+                self.btn_personal.enabled = True
+            else:
+                self.btn_personal.tooltip = 'Please configure your API key.'
+            if Global.check_api_keys['team']:
+                self.btn_team.enabled = True
+            else:
+                self.btn_team.tooltip = 'Please configure your API key.'
 
     def btn_personal_click(self, **event_args):
         """Send task to personal Notion workspace"""
@@ -73,3 +77,5 @@ class Tasks(TasksTemplate):
         # Restore button state
         self.btn_discard.text = "Discard"
         self.btn_discard.enabled = True
+
+
