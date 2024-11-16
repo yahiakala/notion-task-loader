@@ -21,7 +21,7 @@ class Settings(SettingsTemplate):
         """Load data and remove skeleton states"""
         self.user = Global.user
         if self.user['password_hash']:
-            self.cp_password.visible = True
+            self.cp_password_change.visible = True
             self.cp_mfa.visible = True
         self.rp_mfa.items = self.user['mfa']
 
