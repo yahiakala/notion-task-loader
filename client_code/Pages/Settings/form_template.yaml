@@ -7,15 +7,15 @@ components:
   - components:
     - layout_properties: {grid_position: 'OEZMOI,OHCVSX'}
       name: lbl_pw_chg
-      properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Password, tooltip: '', underline: false, visible: true}
+      properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: input-prompt, spacing_above: small, spacing_below: small, text: Password, tooltip: '', underline: false, visible: true}
       type: Label
     - layout_properties: {grid_position: 'FOIRBH,KGNGCK'}
       name: tb_oldpw
-      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: true, italic: false, placeholder: Old Password, role: outlined, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: true, italic: false, placeholder: Old Password, role: task-input, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
       type: TextBox
     - layout_properties: {grid_position: 'YNLUHA,BJVCRM'}
       name: tb_newpw
-      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: true, italic: false, placeholder: New Password, role: outlined, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: true, italic: false, placeholder: New Password, role: task-input, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
       type: TextBox
     - layout_properties: {grid_position: 'QUOWGP,NLCDXZ'}
       name: lbl_pw_error
@@ -24,15 +24,15 @@ components:
     - event_bindings: {click: btn_chg_pw_click}
       layout_properties: {grid_position: 'LCXTJI,DUUBLV'}
       name: btn_chg_pw
-      properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: tonal-button, spacing_above: small, spacing_below: small, text: Change Password, tooltip: '', underline: false, visible: true}
+      properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: process-button, spacing_above: small, spacing_below: small, text: Change Password, tooltip: '', underline: false, visible: true}
       type: Button
     layout_properties: {grid_position: 'GLLYOE,IAGUNO'}
     name: cp_password_change
-    properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: elevated-card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: input-container, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
     type: ColumnPanel
   layout_properties: {grid_position: 'YLOUCP,CAWKCV'}
   name: cp_password
-  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: tonal-card, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: input-container, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
   type: ColumnPanel
 - components:
   - layout_properties: {grid_position: 'PMPUZI,HNHBUG'}
@@ -46,11 +46,11 @@ components:
   - event_bindings: {click: btn_add_mfa_click}
     layout_properties: {grid_position: 'OXZBJX,GOBNOE'}
     name: btn_add_mfa
-    properties: {role: filled-button, text: Add MFA Method}
+    properties: {role: process-button, text: Add MFA Method}
     type: Button
   layout_properties: {grid_position: 'SQMKXY,HEPFJT'}
   name: cp_mfa
-  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: tonal-card, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: input-container, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
   type: ColumnPanel
 - components:
   - layout_properties: {grid_position: 'XPUTDT,NSCHBH'}
