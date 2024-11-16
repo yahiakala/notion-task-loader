@@ -201,6 +201,25 @@ alert("Operation completed successfully")
 Notification("Operation completed successfully").show()
 ```
 
+## Testing the Application
+
+The application can be tested using the development deployment. The deployment information is stored in `docs/.deployment.txt` and includes a URL, an email, and a password.
+
+To test the application:
+
+1. Visit the deployment URL in your browser
+2. Sign in using the provided email and password
+3. Test functionality in the development environment
+4. Remember that this is a development deployment, so use it only for testing purposes
+
+### Best Practices for Testing
+
+1. Always test changes in the development deployment before deploying to production
+2. Use the provided test account credentials
+3. Test all affected functionality after making changes
+4. Clear browser cache if you encounter unexpected behavior
+5. Report any issues found during testing
+
 ## Best Practices
 
 While linting errors should be ignored, developers should still follow these best practices:
