@@ -18,7 +18,7 @@ class EnsureUserMixin:
             except Exception:
                 Global.tenant_id = Global.tenant['id']
             if 'delete_members' in Global.permissions and (Global.tenant['name'] is None or Global.tenant['name'] == ''):
-                raise Redirect(path='/app/settings')
+                raise Redirect(path='/app/admin')
 
 
 class SignRoute(BaseRoute):

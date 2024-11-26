@@ -54,7 +54,7 @@ class Settings(SettingsTemplate):
 
     def btn_chg_pw_click(self, **event_args):
         self.lbl_pw_error.visible = False
-        user = Global.user
+        self.user = Global.user
         if self.tb_oldpw.text and self.tb_newpw.text:
             print('Changing password')
             try:
