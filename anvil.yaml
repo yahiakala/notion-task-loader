@@ -136,7 +136,7 @@ dependencies:
   version: {version_tag: v06}
 - dep_id: dep_i3kq70u5al9g
   resolution_hints: {app_id: KDKDM3MG6IQHC2FK, name: Anvil Squared, package_name: anvil_squared}
-  version: {dev: true}
+  version: {version_tag: v0.09}
 - dep_id: dep_g0by81p383psl
   resolution_hints: {app_id: PIJ33MOHKDZDE7NS, name: routing, package_name: routing}
   version: {branch: yahia}
